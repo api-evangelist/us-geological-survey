@@ -4,8 +4,7 @@ url: >-
 apis:
   - aid: us-geological-survey:us-geological-survey
     name: 'US Geological Survey '
-    tags:
-      - API
+    tags: []
     humanURL: https://www.usgs.gov/products/web-tools/apis
     properties:
       - url: https://www.usgs.gov/products/web-tools/apis
