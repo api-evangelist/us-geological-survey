@@ -26,17 +26,11 @@ created: '2024-12-03'
 modified: '2026-03-16'
 position: Consuming
 description: >-
-  The US Geological Survey is a scientific agency of the United States
-  government that conducts research on the natural resources, natural hazards,
-  and environmental health of the United States. The USGS is responsible for
-  monitoring and assessing the country's water, energy, mineral, and biological
-  resources, as well as investigating geological hazards such as earthquakes,
-  volcanoes, landslides, and floods. The agency also provides scientific data
-  and information to help policymakers, resource managers, and the public make
-  informed decisions about issues such as climate change, water availability,
-  and land use planning. Overall, the US Geological Survey plays a vital role in
-  understanding and protecting the natural resources and landscapes of the
-  United States.
+  The US Geological Survey is a scientific agency of the United States government
+  that conducts research on the natural resources, natural hazards, and environmental
+  health of the United States. The USGS is responsible for monitoring and assessing
+  the country's water, energy, mineral, and biological resources, as well as investigating
+  geological hazards such as earthquakes, volcanoes, landslides, and floods.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
