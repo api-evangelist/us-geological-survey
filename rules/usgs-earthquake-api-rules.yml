@@ -1,0 +1,93 @@
+extends: spectral:oas
+rules:
+  usgs-operation-ids-camel-case:
+    description: Operation IDs must use camelCase naming
+    message: Operation ID "{{value}}" should use camelCase (e.g., queryEarthquakes, countEarthquakes)
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  usgs-operations-have-summaries:
+    description: All operations must have a summary
+    message: Operation is missing a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  usgs-operations-have-tags:
+    description: All operations should be tagged for grouping
+    message: Operation is missing tags
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  usgs-format-param-documented:
+    description: Format parameters should list valid values
+    message: Format parameter should specify valid enum values
+    severity: info
+    given: "$.paths[*][*].parameters[?(@.name == 'format')]"
+    then:
+      field: schema.enum
+      function: truthy
+
+  usgs-response-200-defined:
+    description: All GET operations should define a 200 response
+    message: GET operation is missing a 200 OK response
+    severity: warn
+    given: "$.paths[*][get]"
+    then:
+      field: responses.200
+      function: truthy
+
+  usgs-response-400-defined:
+    description: Query operations should define a 400 bad request response
+    message: Operation should define a 400 response for invalid parameters
+    severity: info
+    given: "$.paths[*][get]"
+    then:
+      field: responses.400
+      function: truthy
+
+  usgs-servers-defined:
+    description: API must define servers
+    message: No servers defined
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  usgs-time-params-iso8601-format:
+    description: Time parameters should indicate ISO 8601 format
+    message: Time parameter should document ISO 8601 date-time format
+    severity: info
+    given: "$.paths[*][*].parameters[?(@.name == 'starttime' || @.name == 'endtime')]"
+    then:
+      field: schema.format
+      function: truthy
+
+  usgs-geo-params-in-range:
+    description: Latitude parameters should specify valid range
+    message: Latitude parameter should specify minimum/maximum constraints
+    severity: info
+    given: "$.paths[*][*].parameters[?(@.name == 'minlatitude' || @.name == 'maxlatitude')]"
+    then:
+      field: schema.minimum
+      function: truthy
+
+  usgs-tags-title-case:
+    description: Tags must use Title Case naming
+    message: Tag "{{value}}" should use Title Case
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 &]*$"

@@ -1,0 +1,80 @@
+{
+  "title": "USGS Earthquake Feature Structure",
+  "description": "Field documentation for a GeoJSON earthquake feature from the USGS Earthquake Catalog API",
+  "type": "object",
+  "sections": [
+    {
+      "name": "Top-Level Fields",
+      "fields": [
+        {"name": "type", "type": "string", "value": "Feature", "description": "GeoJSON type identifier, always 'Feature'"},
+        {"name": "id", "type": "string", "description": "Unique USGS event ID combining network code and event code (e.g., us7000pqrst, ci39876543)"},
+        {"name": "geometry", "type": "object", "description": "GeoJSON Point geometry with [longitude, latitude, depth_km] coordinates"},
+        {"name": "properties", "type": "object", "description": "All event attributes and metadata"}
+      ]
+    },
+    {
+      "name": "Location Properties",
+      "fields": [
+        {"name": "place", "type": "string", "description": "Named geographic region description (e.g., '87 km NNE of Hualien City, Taiwan')", "nullable": true},
+        {"name": "coordinates[0]", "type": "number", "description": "Longitude in decimal degrees (-180 to 180)"},
+        {"name": "coordinates[1]", "type": "number", "description": "Latitude in decimal degrees (-90 to 90)"},
+        {"name": "coordinates[2]", "type": "number", "description": "Depth in kilometers below earth's surface"}
+      ]
+    },
+    {
+      "name": "Magnitude Properties",
+      "fields": [
+        {"name": "mag", "type": "number", "description": "Preferred magnitude value", "nullable": true},
+        {"name": "magType", "type": "string", "description": "Magnitude type/method: mb (body wave), ml (local), mw (moment), ms (surface wave), md (duration)", "nullable": true}
+      ]
+    },
+    {
+      "name": "Timing Properties",
+      "fields": [
+        {"name": "time", "type": "integer", "description": "Milliseconds since Unix epoch (UTC) when the earthquake occurred"},
+        {"name": "updated", "type": "integer", "description": "Milliseconds since epoch when the event was last updated"},
+        {"name": "tz", "type": "integer", "description": "Timezone offset in minutes from UTC at the epicenter", "nullable": true}
+      ]
+    },
+    {
+      "name": "Impact Properties",
+      "fields": [
+        {"name": "felt", "type": "integer", "description": "Number of DYFI (Did-You-Feel-It) reports submitted by the public", "nullable": true},
+        {"name": "cdi", "type": "number", "description": "Maximum reported community intensity on MMI scale (1-10) from DYFI", "nullable": true},
+        {"name": "mmi", "type": "number", "description": "Maximum estimated instrumental intensity on MMI scale from ShakeMap", "nullable": true},
+        {"name": "alert", "type": "string", "description": "PAGER alert level indicating estimated casualties/losses: green, yellow, orange, red", "nullable": true},
+        {"name": "sig", "type": "integer", "description": "Significance score 0-1000; higher = more newsworthy/impactful"},
+        {"name": "tsunami", "type": "integer", "description": "1 if event is in a tsunamigenic region and tsunami warning was issued, 0 otherwise"}
+      ]
+    },
+    {
+      "name": "Data Quality Properties",
+      "fields": [
+        {"name": "status", "type": "string", "description": "Review status: 'automatic' (machine-determined), 'reviewed' (human-reviewed), 'deleted'"},
+        {"name": "nst", "type": "integer", "description": "Number of seismic stations used to determine location; more = better", "nullable": true},
+        {"name": "dmin", "type": "number", "description": "Distance in degrees to nearest station; smaller = better location constraint", "nullable": true},
+        {"name": "rms", "type": "number", "description": "RMS travel time residual in seconds; smaller = better location fit", "nullable": true},
+        {"name": "gap", "type": "number", "description": "Azimuthal gap in degrees; < 180 = well-constrained location", "nullable": true}
+      ]
+    },
+    {
+      "name": "Source Properties",
+      "fields": [
+        {"name": "net", "type": "string", "description": "Network code of the preferred/authoritative data source (us, ci, ak, nc, etc.)"},
+        {"name": "code", "type": "string", "description": "Event code assigned by the contributing network"},
+        {"name": "ids", "type": "string", "description": "Comma-delimited list of all event IDs across contributing networks"},
+        {"name": "sources", "type": "string", "description": "Comma-delimited list of all contributing network codes"},
+        {"name": "types", "type": "string", "description": "Comma-delimited list of available product types (origin, shakemap, dyfi, losspager, etc.)"}
+      ]
+    },
+    {
+      "name": "Display Properties",
+      "fields": [
+        {"name": "url", "type": "string", "description": "URL to the event page on earthquake.usgs.gov"},
+        {"name": "detail", "type": "string", "description": "URL to retrieve detailed GeoJSON for this specific event"},
+        {"name": "title", "type": "string", "description": "Human-readable title: 'M {mag} - {place}'"},
+        {"name": "type", "type": "string", "description": "Event type: earthquake, explosion, volcanic eruption, quarry blast, etc."}
+      ]
+    }
+  ]
+}

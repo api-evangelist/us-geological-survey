@@ -1,0 +1,502 @@
+openapi: 3.0.3
+info:
+  title: USGS Water Data OGC API
+  description: >-
+    The USGS Water Data OGC APIs provide OGC-compliant interfaces to USGS water
+    data including real-time continuous measurements from sensor networks, daily
+    summary values, field measurements, monitoring location metadata, and water
+    quality data. The API follows the OGC API Features specification and
+    supports spatial and temporal filtering via CQL2.
+  version: 0.49.2
+  contact:
+    email: wdfn@usgs.gov
+    url: https://api.waterdata.usgs.gov
+  license:
+    name: US Government Work - Public Domain
+    url: https://www.usa.gov/government-works
+servers:
+  - url: https://api.waterdata.usgs.gov/ogcapi/v0
+    description: USGS Water Data OGC API Production Server
+tags:
+  - name: Collections
+    description: OGC API collection discovery
+  - name: Continuous Values
+    description: Real-time and historical continuous sensor measurements
+  - name: Daily Values
+    description: Daily summary water data
+  - name: Monitoring Locations
+    description: Geographic and metadata for USGS monitoring stations
+  - name: Field Measurements
+    description: Physically measured values from site visits
+  - name: Time Series Metadata
+    description: Metadata about time series observations
+security:
+  - ApiKeyQuery: []
+  - ApiKeyHeader: []
+paths:
+  /:
+    get:
+      operationId: getLandingPage
+      summary: Get Landing Page
+      description: Returns the API landing page with links to available resources.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        '200':
+          description: Landing page
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+  /collections:
+    get:
+      operationId: listCollections
+      summary: List Collections
+      description: Returns a list of all available data collections in the USGS Water Data API.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        '200':
+          description: List of available collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionsList'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+  /collections/continuous-values/items:
+    get:
+      operationId: queryContinuousValues
+      summary: Query Continuous Values
+      description: >-
+        Returns high-frequency continuous measurement data from USGS automated
+        sensor networks. Includes streamflow, gage height, temperature, and
+        hundreds of other parameters measured at monitoring locations.
+      tags:
+        - Continuous Values
+      parameters:
+        - $ref: '#/components/parameters/bboxParam'
+        - $ref: '#/components/parameters/datetimeParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+        - $ref: '#/components/parameters/filterParam'
+        - $ref: '#/components/parameters/formatParam'
+        - $ref: '#/components/parameters/propertiesParam'
+        - $ref: '#/components/parameters/sortbyParam'
+        - name: monitoringLocationIdentifier
+          in: query
+          description: USGS monitoring location identifier (e.g., USGS-01646500)
+          required: false
+          schema:
+            type: string
+        - name: parameterCode
+          in: query
+          description: USGS parameter code for the measurement type (e.g., 00060 for discharge)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Continuous measurement features
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+        '400':
+          description: Bad request
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+  /collections/daily-values/items:
+    get:
+      operationId: queryDailyValues
+      summary: Query Daily Values
+      description: >-
+        Returns daily summary water data including mean, median, maximum, and
+        minimum values for streams, lakes, and wells. Aggregates continuous
+        sensor data into daily statistics.
+      tags:
+        - Daily Values
+      parameters:
+        - $ref: '#/components/parameters/bboxParam'
+        - $ref: '#/components/parameters/datetimeParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+        - $ref: '#/components/parameters/filterParam'
+        - $ref: '#/components/parameters/formatParam'
+        - name: monitoringLocationIdentifier
+          in: query
+          description: USGS monitoring location identifier
+          required: false
+          schema:
+            type: string
+        - name: parameterCode
+          in: query
+          description: USGS parameter code
+          required: false
+          schema:
+            type: string
+        - name: statCode
+          in: query
+          description: Statistical code (e.g., 00003 for mean, 00001 for max)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Daily value features
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+        '400':
+          description: Bad request
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+  /collections/monitoring-locations/items:
+    get:
+      operationId: queryMonitoringLocations
+      summary: Query Monitoring Locations
+      description: >-
+        Returns geographic and identification information for USGS water
+        monitoring stations including names, identifiers, coordinates,
+        and hydrologic unit codes.
+      tags:
+        - Monitoring Locations
+      parameters:
+        - $ref: '#/components/parameters/bboxParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+        - $ref: '#/components/parameters/filterParam'
+        - $ref: '#/components/parameters/formatParam'
+        - name: monitoringLocationIdentifier
+          in: query
+          description: USGS monitoring location identifier
+          required: false
+          schema:
+            type: string
+        - name: monitoringLocationType
+          in: query
+          description: Type of monitoring location (e.g., Stream, Lake, Well)
+          required: false
+          schema:
+            type: string
+        - name: stateCd
+          in: query
+          description: Two-letter state abbreviation
+          required: false
+          schema:
+            type: string
+        - name: countyCd
+          in: query
+          description: County FIPS code
+          required: false
+          schema:
+            type: string
+        - name: hucCd
+          in: query
+          description: Hydrologic Unit Code (HUC)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Monitoring location features
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+        '400':
+          description: Bad request
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+  /collections/monitoring-locations/items/{featureId}:
+    get:
+      operationId: getMonitoringLocation
+      summary: Get Monitoring Location
+      description: Returns details for a single USGS water monitoring location by feature ID.
+      tags:
+        - Monitoring Locations
+      parameters:
+        - name: featureId
+          in: path
+          description: Unique feature identifier for the monitoring location
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/formatParam'
+      responses:
+        '200':
+          description: Monitoring location feature
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feature'
+        '404':
+          description: Feature not found
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+  /collections/time-series-metadata/items:
+    get:
+      operationId: queryTimeSeriesMetadata
+      summary: Query Time Series Metadata
+      description: >-
+        Returns metadata about grouped observations including operational
+        thresholds, units of measurement, and time series characteristics
+        for USGS monitoring locations.
+      tags:
+        - Time Series Metadata
+      parameters:
+        - $ref: '#/components/parameters/bboxParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+        - $ref: '#/components/parameters/filterParam'
+        - $ref: '#/components/parameters/formatParam'
+        - name: monitoringLocationIdentifier
+          in: query
+          description: USGS monitoring location identifier
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Time series metadata features
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+  /collections/field-measurements/items:
+    get:
+      operationId: queryFieldMeasurements
+      summary: Query Field Measurements
+      description: >-
+        Returns physically measured values collected during site visits by
+        USGS hydrographers, including streamflow measurements used to define
+        rating curves for continuous data.
+      tags:
+        - Field Measurements
+      parameters:
+        - $ref: '#/components/parameters/bboxParam'
+        - $ref: '#/components/parameters/datetimeParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+        - $ref: '#/components/parameters/filterParam'
+        - $ref: '#/components/parameters/formatParam'
+        - name: monitoringLocationIdentifier
+          in: query
+          description: USGS monitoring location identifier
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Field measurement features
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+components:
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key passed as query parameter. Register at https://api.waterdata.usgs.gov/signup/
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: api_key
+      description: API key passed in request header. Register at https://api.waterdata.usgs.gov/signup/
+  parameters:
+    formatParam:
+      name: f
+      in: query
+      description: Response format
+      required: false
+      schema:
+        type: string
+        enum:
+          - json
+          - html
+          - jsonld
+          - csv
+        default: json
+    bboxParam:
+      name: bbox
+      in: query
+      description: Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)
+      required: false
+      schema:
+        type: array
+        items:
+          type: number
+        minItems: 4
+        maxItems: 6
+      style: form
+      explode: false
+    datetimeParam:
+      name: datetime
+      in: query
+      description: Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)
+      required: false
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of features to return
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        default: 100
+    offsetParam:
+      name: offset
+      in: query
+      description: Starting offset for pagination
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    filterParam:
+      name: filter
+      in: query
+      description: CQL2 text filter expression for advanced querying
+      required: false
+      schema:
+        type: string
+    propertiesParam:
+      name: properties
+      in: query
+      description: Comma-separated list of properties to include in response
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+    sortbyParam:
+      name: sortby
+      in: query
+      description: Property name to sort results by (prefix with - for descending)
+      required: false
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: API key missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    RateLimitExceeded:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    CollectionsList:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Collection identifier
+              title:
+                type: string
+                description: Human-readable title
+              description:
+                type: string
+                description: Description of the collection
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+    FeatureCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feature'
+        numberMatched:
+          type: integer
+          description: Total number of features matching the query
+        numberReturned:
+          type: integer
+          description: Number of features returned in this response
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Feature:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - Feature
+        id:
+          type: string
+          description: Unique feature identifier
+        geometry:
+          type: object
+          nullable: true
+          description: GeoJSON geometry object
+        properties:
+          type: object
+          description: Feature properties
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          description: URL of the link
+        rel:
+          type: string
+          description: Link relation type
+        type:
+          type: string
+          description: Media type
+        title:
+          type: string
+          description: Human-readable title
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          enum:
+            - API_KEY_MISSING
+            - OVER_RATE_LIMIT
+        message:
+          type: string
+          description: Human-readable error message

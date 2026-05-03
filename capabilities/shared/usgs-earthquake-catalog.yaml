@@ -1,0 +1,183 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "USGS Earthquake Catalog API"
+  description: "USGS FDSN Event Web Service providing real-time and historical earthquake catalog access."
+  tags:
+    - Earthquakes
+    - Seismology
+    - Hazards
+    - Geospatial
+    - Federal Government
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys: {}
+
+capability:
+  consumes:
+    - type: http
+      namespace: usgs-earthquake
+      baseUri: https://earthquake.usgs.gov/fdsnws/event/1
+      description: "USGS FDSN Event Web Service for earthquake catalog access"
+      resources:
+        - name: earthquakes
+          path: /query
+          description: "Earthquake catalog query"
+          operations:
+            - name: query-earthquakes
+              method: GET
+              description: "Query earthquake catalog with spatial, temporal, and magnitude filters"
+              inputParameters:
+                - name: format
+                  in: query
+                  type: string
+                  required: false
+                  description: "Output format (geojson, quakeml, kml, csv, text)"
+                - name: starttime
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start time (ISO 8601)"
+                - name: endtime
+                  in: query
+                  type: string
+                  required: false
+                  description: "End time (ISO 8601)"
+                - name: minmagnitude
+                  in: query
+                  type: number
+                  required: false
+                  description: "Minimum magnitude"
+                - name: maxmagnitude
+                  in: query
+                  type: number
+                  required: false
+                  description: "Maximum magnitude"
+                - name: minlatitude
+                  in: query
+                  type: number
+                  required: false
+                  description: "Southern boundary latitude"
+                - name: maxlatitude
+                  in: query
+                  type: number
+                  required: false
+                  description: "Northern boundary latitude"
+                - name: minlongitude
+                  in: query
+                  type: number
+                  required: false
+                  description: "Western boundary longitude"
+                - name: maxlongitude
+                  in: query
+                  type: number
+                  required: false
+                  description: "Eastern boundary longitude"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of events to return"
+                - name: orderby
+                  in: query
+                  type: string
+                  required: false
+                  description: "Sort order (time, magnitude)"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: earthquake-count
+          path: /count
+          description: "Count earthquakes matching query parameters"
+          operations:
+            - name: count-earthquakes
+              method: GET
+              description: "Count earthquakes without returning full data"
+              inputParameters:
+                - name: starttime
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start time"
+                - name: endtime
+                  in: query
+                  type: string
+                  required: false
+                  description: "End time"
+                - name: minmagnitude
+                  in: query
+                  type: number
+                  required: false
+                  description: "Minimum magnitude"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8102
+      namespace: usgs-earthquake-rest
+      resources:
+        - path: /v1/earthquakes
+          name: earthquakes
+          description: "Earthquake events from USGS catalog"
+          operations:
+            - method: GET
+              name: query-earthquakes
+              description: "Query earthquake catalog"
+              call: "usgs-earthquake.query-earthquakes"
+              with:
+                format: "rest.format"
+                starttime: "rest.starttime"
+                endtime: "rest.endtime"
+                minmagnitude: "rest.minmagnitude"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9102
+      namespace: usgs-earthquake-mcp
+      transport: http
+      tools:
+        - name: query-earthquakes
+          description: "Query USGS earthquake catalog by time, location, and magnitude"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-earthquake.query-earthquakes"
+          with:
+            format: "tools.format"
+            starttime: "tools.starttime"
+            endtime: "tools.endtime"
+            minmagnitude: "tools.minmagnitude"
+            maxmagnitude: "tools.maxmagnitude"
+            minlatitude: "tools.minlatitude"
+            maxlatitude: "tools.maxlatitude"
+            minlongitude: "tools.minlongitude"
+            maxlongitude: "tools.maxlongitude"
+            limit: "tools.limit"
+            orderby: "tools.orderby"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: count-earthquakes
+          description: "Count earthquakes in USGS catalog matching specified criteria"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-earthquake.count-earthquakes"
+          with:
+            starttime: "tools.starttime"
+            endtime: "tools.endtime"
+            minmagnitude: "tools.minmagnitude"
+          outputParameters:
+            - type: object
+              mapping: "$."

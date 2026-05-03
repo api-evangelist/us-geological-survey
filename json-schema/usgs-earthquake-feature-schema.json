@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/us-geological-survey/main/json-schema/usgs-earthquake-feature-schema.json",
+  "title": "USGS Earthquake Feature",
+  "description": "GeoJSON Feature representing a single USGS earthquake catalog event",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "Feature"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique USGS event ID (network code + event code)"
+    },
+    "geometry": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Point"
+        },
+        "coordinates": {
+          "type": "array",
+          "description": "[longitude, latitude, depth_km]",
+          "items": {"type": "number"},
+          "minItems": 3,
+          "maxItems": 3
+        }
+      }
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "mag": {
+          "type": ["number", "null"],
+          "description": "Magnitude of the earthquake"
+        },
+        "place": {
+          "type": ["string", "null"],
+          "description": "Named geographic region near the epicenter"
+        },
+        "time": {
+          "type": "integer",
+          "description": "Event time in milliseconds since Unix epoch (UTC)"
+        },
+        "updated": {
+          "type": "integer",
+          "description": "Last update time in milliseconds since epoch"
+        },
+        "tz": {
+          "type": ["integer", "null"],
+          "description": "Timezone offset in minutes from UTC at the epicenter"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to the USGS event page"
+        },
+        "detail": {
+          "type": "string",
+          "description": "URL to detailed GeoJSON for this event"
+        },
+        "felt": {
+          "type": ["integer", "null"],
+          "description": "Number of Did-You-Feel-It (DYFI) responses submitted"
+        },
+        "cdi": {
+          "type": ["number", "null"],
+          "description": "Maximum reported intensity from DYFI community reports (1-10 MMI scale)"
+        },
+        "mmi": {
+          "type": ["number", "null"],
+          "description": "Maximum estimated instrumental intensity from ShakeMap (1-10 MMI scale)"
+        },
+        "alert": {
+          "type": ["string", "null"],
+          "description": "PAGER alert level: green, yellow, orange, or red",
+          "enum": ["green", "yellow", "orange", "red", null]
+        },
+        "status": {
+          "type": "string",
+          "description": "Review status of the event",
+          "enum": ["automatic", "reviewed", "deleted"]
+        },
+        "tsunami": {
+          "type": "integer",
+          "description": "1 if event is in a tsunamigenic region, 0 otherwise",
+          "enum": [0, 1]
+        },
+        "sig": {
+          "type": "integer",
+          "description": "Significance score (0-1000) based on magnitude, DYFI, and alert level",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "net": {
+          "type": "string",
+          "description": "Network code of the authoritative data contributor"
+        },
+        "code": {
+          "type": "string",
+          "description": "Event code assigned by the contributing network"
+        },
+        "ids": {
+          "type": "string",
+          "description": "Comma-separated list of event IDs from all contributing networks"
+        },
+        "sources": {
+          "type": "string",
+          "description": "Comma-separated list of contributing network codes"
+        },
+        "types": {
+          "type": "string",
+          "description": "Comma-separated list of product types available for this event"
+        },
+        "nst": {
+          "type": ["integer", "null"],
+          "description": "Number of seismic stations used to determine location"
+        },
+        "dmin": {
+          "type": ["number", "null"],
+          "description": "Horizontal distance in degrees to nearest seismic station"
+        },
+        "rms": {
+          "type": ["number", "null"],
+          "description": "Root-mean-square travel time residual in seconds"
+        },
+        "gap": {
+          "type": ["number", "null"],
+          "description": "Largest azimuthal gap between adjacent stations in degrees"
+        },
+        "magType": {
+          "type": ["string", "null"],
+          "description": "Method used to calculate the preferred magnitude (mb, ml, mw, etc.)"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of seismic event"
+        },
+        "title": {
+          "type": "string",
+          "description": "Human-readable title combining magnitude and location"
+        }
+      },
+      "required": ["mag", "place", "time", "status", "sig", "net", "code", "type"]
+    }
+  },
+  "required": ["type", "id", "geometry", "properties"]
+}

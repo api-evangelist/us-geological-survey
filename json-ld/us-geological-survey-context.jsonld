@@ -1,0 +1,71 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "usgs": "https://www.usgs.gov/ns/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "geosparql": "http://www.opengis.net/ont/geosparql#",
+    "ssn": "http://www.w3.org/ns/ssn/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+
+    "EarthquakeEvent": "schema:Event",
+    "SeismicMagnitude": "usgs:SeismicMagnitude",
+    "WaterMonitoringLocation": "sosa:FeatureOfInterest",
+    "WaterObservation": "sosa:Observation",
+    "WaterTimeSeries": "usgs:WaterTimeSeries",
+
+    "id": "@id",
+    "type": "@type",
+
+    "mag": "usgs:magnitude",
+    "magType": "usgs:magnitudeType",
+    "place": "schema:location",
+    "time": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "updated": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "depth": "usgs:depthKm",
+    "latitude": "geo:lat",
+    "longitude": "geo:long",
+    "alert": "usgs:pagarAlertLevel",
+    "tsunami": "usgs:tsunamiFlag",
+    "felt": "usgs:dyfiCount",
+    "sig": "usgs:significanceScore",
+    "status": "schema:eventStatus",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+
+    "monitoringLocationIdentifier": "sosa:hasFeatureOfInterest",
+    "parameterCode": "sosa:observedProperty",
+    "values": "sosa:hasResult",
+    "units": "qudt:unit",
+
+    "Organization": {
+      "@id": "schema:GovernmentOrganization",
+      "name": "US Geological Survey",
+      "url": "https://www.usgs.gov",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q193755",
+        "https://dbpedia.org/resource/United_States_Geological_Survey"
+      ]
+    },
+
+    "MMI": {
+      "@id": "usgs:ModifiedMercalliIntensity",
+      "description": "The Modified Mercalli Intensity scale for measuring earthquake shaking intensity"
+    },
+
+    "PAGER": {
+      "@id": "usgs:PAGER",
+      "description": "Prompt Assessment of Global Earthquakes for Response - rapid impact assessment system"
+    }
+  }
+}

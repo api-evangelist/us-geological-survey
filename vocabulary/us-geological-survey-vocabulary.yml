@@ -1,0 +1,228 @@
+vocabulary:
+  name: US Geological Survey Vocabulary
+  description: >-
+    Domain vocabulary for the US Geological Survey covering seismology,
+    hydrology, geospatial science, and earth observation.
+  version: '1.0'
+  created: '2026-05-03'
+  modified: '2026-05-03'
+
+domains:
+  - name: Seismology
+    description: Earthquake and seismic hazard concepts
+    terms:
+      - term: Magnitude
+        definition: >-
+          A quantitative measure of the size of an earthquake based on the
+          amplitudes of seismic waves recorded by seismographs
+        tags:
+          - Earthquakes
+          - Measurement
+      - term: Moment Magnitude (Mw)
+        definition: >-
+          The preferred magnitude scale based on the seismic moment,
+          which is proportional to the fault area times the average slip times
+          the rock rigidity
+        source: USGS NEIC
+        tags:
+          - Earthquakes
+          - Measurement
+      - term: Body Wave Magnitude (mb)
+        definition: >-
+          Magnitude measured from the amplitude of P-waves, the primary waves
+          traveling through the Earth's interior
+        source: USGS NEIC
+        tags:
+          - Earthquakes
+          - Measurement
+      - term: Local Magnitude (ml)
+        definition: >-
+          The original Richter magnitude scale based on the maximum trace amplitude
+          on a Wood-Anderson seismograph at 100 km distance
+        source: USGS NEIC
+        tags:
+          - Earthquakes
+          - Measurement
+      - term: Epicenter
+        definition: >-
+          The point on the Earth's surface directly above the hypocenter
+          (focus) of an earthquake
+        tags:
+          - Earthquakes
+          - Geography
+      - term: Hypocenter
+        definition: >-
+          The point within the Earth where an earthquake rupture starts,
+          also called the focus; depth is measured from the surface to the hypocenter
+        tags:
+          - Earthquakes
+          - Geography
+      - term: Modified Mercalli Intensity (MMI)
+        definition: >-
+          A 1-10 scale describing the effects of an earthquake at a specific location,
+          from barely felt (I) to total destruction (X)
+        tags:
+          - Earthquakes
+          - Intensity
+      - term: PAGER (Prompt Assessment of Global Earthquakes for Response)
+        definition: >-
+          A USGS system that rapidly estimates the likely human impact of an
+          earthquake and assigns an alert level (green, yellow, orange, red)
+        source: USGS
+        tags:
+          - Earthquakes
+          - Hazards
+          - Emergency Response
+      - term: ShakeMap
+        definition: >-
+          A USGS product providing near-real-time maps of ground motion
+          and shaking intensity following significant earthquakes
+        source: USGS
+        tags:
+          - Earthquakes
+          - Mapping
+      - term: DYFI (Did You Feel It?)
+        definition: >-
+          USGS crowdsourcing tool that collects felt reports from the public
+          to create community intensity maps
+        source: USGS
+        tags:
+          - Earthquakes
+          - Crowdsourcing
+      - term: FDSN (Federation of Digital Seismograph Networks)
+        definition: >-
+          International organization coordinating standards for seismological
+          data exchange; the USGS earthquake API implements FDSN web service specifications
+        tags:
+          - Standards
+          - Seismology
+
+  - name: Hydrology
+    description: Water resources and hydrological measurement concepts
+    terms:
+      - term: Streamflow
+        definition: >-
+          The volume of water flowing through a cross-section of a stream
+          per unit time, measured in cubic feet per second (cfs) or
+          cubic meters per second (cms)
+        tags:
+          - Water Data
+          - Measurement
+      - term: Gage Height
+        definition: >-
+          The height of the water surface above a locally defined datum
+          at a stream monitoring station, measured in feet or meters
+        tags:
+          - Water Data
+          - Measurement
+      - term: Hydrograph
+        definition: >-
+          A graph showing changes in streamflow or water level over time
+          at a monitoring location
+        tags:
+          - Water Data
+          - Visualization
+      - term: Hydrologic Unit Code (HUC)
+        definition: >-
+          A hierarchical classification system for US watersheds; HUC-8
+          identifies individual watersheds, HUC-12 identifies sub-watersheds
+        source: USGS
+        tags:
+          - Water Data
+          - Geographic
+      - term: OGC API Features
+        definition: >-
+          An open standard from the Open Geospatial Consortium for querying
+          geospatial feature data via REST APIs; USGS Water Data APIs implement this standard
+        source: OGC
+        tags:
+          - Standards
+          - API
+      - term: CQL2 (Common Query Language)
+        definition: >-
+          A standard filter expression language used in OGC API Features
+          for advanced geospatial queries
+        source: OGC
+        tags:
+          - Standards
+          - API
+      - term: Parameter Code
+        definition: >-
+          A 5-digit USGS code identifying a specific physical or chemical
+          property being measured (e.g., 00060 = discharge in cfs,
+          00065 = gage height in ft, 72019 = depth to water)
+        source: USGS NWIS
+        tags:
+          - Water Data
+          - Standards
+      - term: Daily Value
+        definition: >-
+          A statistical summary (mean, max, min, or other) of continuous
+          observations aggregated to a daily value
+        source: USGS
+        tags:
+          - Water Data
+          - Statistics
+
+  - name: Geospatial
+    description: Geographic and mapping concepts used in USGS data
+    terms:
+      - term: WGS84
+        definition: >-
+          World Geodetic System 1984, the standard geographic coordinate
+          system used for latitude/longitude values in USGS GeoJSON outputs
+        tags:
+          - Coordinate Systems
+          - Standards
+      - term: GeoJSON
+        definition: >-
+          An open geospatial data format encoding points, lines, polygons,
+          and feature collections using JSON; used by USGS earthquake catalog
+        source: IETF RFC 7946
+        tags:
+          - Formats
+          - Standards
+      - term: QuakeML
+        definition: >-
+          An XML-based exchange format for seismological data developed
+          by the FDSN for earthquake parameters and waveform metadata
+        source: FDSN
+        tags:
+          - Formats
+          - Standards
+          - Seismology
+
+api_properties:
+  data_types:
+    - Earthquake Events (Real-Time)
+    - Water Measurements (Continuous)
+    - Water Measurements (Daily)
+    - Monitoring Locations
+    - Rating Curves
+    - Geomagnetic Data
+    - Seismic Design Data
+    - Scientific Datasets (ScienceBase)
+    - Topographic Data
+    - Satellite Imagery (EROS)
+
+  parameter_codes:
+    "00060": "Discharge (streamflow) in cubic feet per second"
+    "00065": "Gage height in feet"
+    "00010": "Temperature, water in degrees Celsius"
+    "00300": "Dissolved oxygen in mg/L"
+    "00400": "pH"
+    "00095": "Specific conductance in uS/cm"
+    "72019": "Depth to water level in feet below land surface"
+
+  authentication:
+    - "No Authentication (earthquake catalog)"
+    - "API Key (USGS Water Data APIs)"
+
+  output_formats:
+    - GeoJSON
+    - QuakeML
+    - KML
+    - CSV
+    - XML
+    - Plain text
+    - HTML

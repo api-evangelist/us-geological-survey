@@ -1,0 +1,215 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "USGS Earth Science Monitoring"
+  description: >-
+    Workflow capability for USGS earth science monitoring combining earthquake
+    catalog data and water resources data. Supports hazard assessment, natural
+    disaster response, environmental monitoring, and scientific research workflows
+    combining seismic activity data with hydrological measurements.
+  tags:
+    - Earthquakes
+    - Water Data
+    - Earth Science
+    - Hazards
+    - Environmental Monitoring
+    - Federal Government
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      USGS_WATER_API_KEY: USGS_WATER_API_KEY
+
+capability:
+  consumes:
+    - import: usgs-earthquake
+      location: ./shared/usgs-earthquake-catalog.yaml
+    - import: usgs-water
+      location: ./shared/usgs-water-data.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: earth-science-api
+      description: "Unified REST API for USGS earth science monitoring combining earthquake and water data."
+      resources:
+        - path: /v1/earthquakes
+          name: earthquakes
+          description: "Earthquake events from USGS National Earthquake Information Center"
+          operations:
+            - method: GET
+              name: query-earthquakes
+              description: "Query earthquake catalog by time, location, and magnitude"
+              call: "usgs-earthquake.query-earthquakes"
+              with:
+                starttime: "rest.starttime"
+                endtime: "rest.endtime"
+                minmagnitude: "rest.minmagnitude"
+                minlatitude: "rest.minlatitude"
+                maxlatitude: "rest.maxlatitude"
+                minlongitude: "rest.minlongitude"
+                maxlongitude: "rest.maxlongitude"
+                limit: "rest.limit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/earthquake-counts
+          name: earthquake-counts
+          description: "Earthquake count statistics"
+          operations:
+            - method: GET
+              name: count-earthquakes
+              description: "Count earthquakes matching query parameters"
+              call: "usgs-earthquake.count-earthquakes"
+              with:
+                starttime: "rest.starttime"
+                endtime: "rest.endtime"
+                minmagnitude: "rest.minmagnitude"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/water-measurements
+          name: water-measurements
+          description: "Real-time water measurements from USGS monitoring stations"
+          operations:
+            - method: GET
+              name: query-water-measurements
+              description: "Get continuous water measurements from monitoring stations"
+              call: "usgs-water.query-continuous-values"
+              with:
+                monitoringLocationIdentifier: "rest.site_id"
+                parameterCode: "rest.parameter_code"
+                datetime: "rest.datetime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/daily-water-values
+          name: daily-water-values
+          description: "Daily summary water data"
+          operations:
+            - method: GET
+              name: query-daily-water-values
+              description: "Get daily water data summaries"
+              call: "usgs-water.query-daily-values"
+              with:
+                monitoringLocationIdentifier: "rest.site_id"
+                parameterCode: "rest.parameter_code"
+                datetime: "rest.datetime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/monitoring-stations
+          name: monitoring-stations
+          description: "Water monitoring station locations"
+          operations:
+            - method: GET
+              name: query-monitoring-stations
+              description: "Find water monitoring stations by geography"
+              call: "usgs-water.query-monitoring-locations"
+              with:
+                stateCd: "rest.state"
+                bbox: "rest.bbox"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: earth-science-mcp
+      transport: http
+      description: "MCP server for AI-assisted USGS earth science monitoring, hazard assessment, and water resources analysis."
+      tools:
+        - name: query-earthquake-events
+          description: >-
+            Query the USGS earthquake catalog for seismic events. Filter by time range,
+            geographic bounding box, or circular area, magnitude range, and depth.
+            Returns GeoJSON FeatureCollection with event properties including magnitude,
+            location, depth, and PAGER alert level.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-earthquake.query-earthquakes"
+          with:
+            starttime: "tools.starttime"
+            endtime: "tools.endtime"
+            minmagnitude: "tools.minmagnitude"
+            maxmagnitude: "tools.maxmagnitude"
+            minlatitude: "tools.minlatitude"
+            maxlatitude: "tools.maxlatitude"
+            minlongitude: "tools.minlongitude"
+            maxlongitude: "tools.maxlongitude"
+            latitude: "tools.latitude"
+            longitude: "tools.longitude"
+            maxradiuskm: "tools.maxradiuskm"
+            limit: "tools.limit"
+            orderby: "tools.orderby"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: count-seismic-events
+          description: >-
+            Count earthquakes in the USGS catalog without retrieving full event data.
+            Useful for assessing seismic activity levels in a region or time period.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-earthquake.count-earthquakes"
+          with:
+            starttime: "tools.starttime"
+            endtime: "tools.endtime"
+            minmagnitude: "tools.minmagnitude"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-streamflow-data
+          description: >-
+            Get real-time streamflow and water level measurements from a USGS
+            monitoring station. Specify station ID (e.g., USGS-01646500) and
+            optional parameter code (00060 = discharge cfs, 00065 = gage height ft).
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-water.query-continuous-values"
+          with:
+            monitoringLocationIdentifier: "tools.site_id"
+            parameterCode: "tools.parameter_code"
+            datetime: "tools.datetime"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-daily-water-statistics
+          description: >-
+            Get historical daily water data (mean, max, min values) for a USGS
+            monitoring station. Useful for flood analysis, drought assessment,
+            and long-term trend analysis.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-water.query-daily-values"
+          with:
+            monitoringLocationIdentifier: "tools.site_id"
+            parameterCode: "tools.parameter_code"
+            datetime: "tools.datetime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: find-usgs-monitoring-stations
+          description: >-
+            Find USGS water monitoring stations by state, type, or geographic bounding
+            box. Returns location details including coordinates, HUC codes, and
+            monitoring parameters available at each station.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-water.query-monitoring-locations"
+          with:
+            stateCd: "tools.state"
+            monitoringLocationType: "tools.type"
+            bbox: "tools.bbox"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."

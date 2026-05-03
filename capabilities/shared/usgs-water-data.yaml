@@ -1,0 +1,240 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "USGS Water Data OGC API"
+  description: "OGC-compliant interfaces to USGS water data including continuous measurements, daily values, and monitoring location metadata."
+  tags:
+    - Water Data
+    - Hydrology
+    - Streamflow
+    - OGC API
+    - Federal Government
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      USGS_WATER_API_KEY: USGS_WATER_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: usgs-water
+      baseUri: https://api.waterdata.usgs.gov/ogcapi/v0
+      description: "USGS Water Data OGC APIs"
+      authentication:
+        type: apikey
+        key: api_key
+        value: "{{USGS_WATER_API_KEY}}"
+        placement: query
+      resources:
+        - name: continuous-values
+          path: /collections/continuous-values/items
+          description: "Real-time continuous sensor measurements"
+          operations:
+            - name: query-continuous-values
+              method: GET
+              description: "Query continuous water measurement data"
+              inputParameters:
+                - name: monitoringLocationIdentifier
+                  in: query
+                  type: string
+                  required: false
+                  description: "USGS monitoring location ID"
+                - name: parameterCode
+                  in: query
+                  type: string
+                  required: false
+                  description: "USGS parameter code"
+                - name: datetime
+                  in: query
+                  type: string
+                  required: false
+                  description: "Temporal filter (ISO 8601)"
+                - name: bbox
+                  in: query
+                  type: string
+                  required: false
+                  description: "Bounding box for spatial filtering"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum features to return"
+                - name: f
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: daily-values
+          path: /collections/daily-values/items
+          description: "Daily summary water data"
+          operations:
+            - name: query-daily-values
+              method: GET
+              description: "Query daily water data summaries"
+              inputParameters:
+                - name: monitoringLocationIdentifier
+                  in: query
+                  type: string
+                  required: false
+                  description: "USGS monitoring location ID"
+                - name: parameterCode
+                  in: query
+                  type: string
+                  required: false
+                  description: "USGS parameter code"
+                - name: datetime
+                  in: query
+                  type: string
+                  required: false
+                  description: "Temporal filter"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum features to return"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: monitoring-locations
+          path: /collections/monitoring-locations/items
+          description: "Water monitoring station metadata"
+          operations:
+            - name: query-monitoring-locations
+              method: GET
+              description: "Query water monitoring locations"
+              inputParameters:
+                - name: monitoringLocationIdentifier
+                  in: query
+                  type: string
+                  required: false
+                  description: "USGS monitoring location ID"
+                - name: monitoringLocationType
+                  in: query
+                  type: string
+                  required: false
+                  description: "Location type (Stream, Lake, Well)"
+                - name: stateCd
+                  in: query
+                  type: string
+                  required: false
+                  description: "Two-letter state code"
+                - name: bbox
+                  in: query
+                  type: string
+                  required: false
+                  description: "Spatial bounding box"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum features to return"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8103
+      namespace: usgs-water-rest
+      resources:
+        - path: /v1/continuous-values
+          name: continuous-values
+          description: "Real-time water measurements"
+          operations:
+            - method: GET
+              name: query-continuous-values
+              description: "Query continuous water measurements"
+              call: "usgs-water.query-continuous-values"
+              with:
+                monitoringLocationIdentifier: "rest.site_id"
+                parameterCode: "rest.parameter_code"
+                datetime: "rest.datetime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/daily-values
+          name: daily-values
+          description: "Daily water data summaries"
+          operations:
+            - method: GET
+              name: query-daily-values
+              description: "Query daily water values"
+              call: "usgs-water.query-daily-values"
+              with:
+                monitoringLocationIdentifier: "rest.site_id"
+                parameterCode: "rest.parameter_code"
+                datetime: "rest.datetime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/monitoring-locations
+          name: monitoring-locations
+          description: "Water monitoring stations"
+          operations:
+            - method: GET
+              name: query-monitoring-locations
+              description: "Query monitoring locations"
+              call: "usgs-water.query-monitoring-locations"
+              with:
+                stateCd: "rest.state"
+                monitoringLocationType: "rest.type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9103
+      namespace: usgs-water-mcp
+      transport: http
+      tools:
+        - name: get-water-measurements
+          description: "Get real-time continuous water measurements from a USGS monitoring station"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-water.query-continuous-values"
+          with:
+            monitoringLocationIdentifier: "tools.site_id"
+            parameterCode: "tools.parameter_code"
+            datetime: "tools.datetime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-daily-water-values
+          description: "Get daily summary water data (mean, max, min) for a monitoring station"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-water.query-daily-values"
+          with:
+            monitoringLocationIdentifier: "tools.site_id"
+            parameterCode: "tools.parameter_code"
+            datetime: "tools.datetime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: find-water-monitoring-stations
+          description: "Find USGS water monitoring stations by state, type, or location"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "usgs-water.query-monitoring-locations"
+          with:
+            stateCd: "tools.state"
+            monitoringLocationType: "tools.type"
+            bbox: "tools.bbox"
+          outputParameters:
+            - type: object
+              mapping: "$."

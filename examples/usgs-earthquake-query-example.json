@@ -1,0 +1,132 @@
+{
+  "summary": "Example GeoJSON response from the USGS Earthquake Catalog API",
+  "request": {
+    "method": "GET",
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-28T00:00:00&endtime=2026-04-28T23:59:59&minmagnitude=4.5&orderby=magnitude"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "type": "FeatureCollection",
+      "metadata": {
+        "generated": 1745798400000,
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-28T00:00:00&endtime=2026-04-28T23:59:59&minmagnitude=4.5&orderby=magnitude",
+        "title": "USGS Significant Earthquakes, April 28, 2026",
+        "status": 200,
+        "api": "1.14.1",
+        "count": 3
+      },
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "mag": 6.2,
+            "place": "87 km NNE of Hualien City, Taiwan",
+            "time": 1745798400000,
+            "updated": 1745801000000,
+            "tz": null,
+            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000pqrst",
+            "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000pqrst&format=geojson",
+            "felt": 342,
+            "cdi": 6.8,
+            "mmi": 6.5,
+            "alert": "green",
+            "status": "reviewed",
+            "tsunami": 0,
+            "sig": 592,
+            "net": "us",
+            "code": "7000pqrst",
+            "ids": ",us7000pqrst,",
+            "sources": ",us,",
+            "types": ",origin,phase-data,",
+            "nst": 89,
+            "dmin": 0.456,
+            "rms": 0.87,
+            "gap": 42,
+            "magType": "mww",
+            "type": "earthquake",
+            "title": "M 6.2 - 87 km NNE of Hualien City, Taiwan"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [121.8934, 24.3215, 18.5]
+          },
+          "id": "us7000pqrst"
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "mag": 5.1,
+            "place": "South of the Fiji Islands",
+            "time": 1745762400000,
+            "updated": 1745763200000,
+            "tz": null,
+            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000pqrsu",
+            "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000pqrsu&format=geojson",
+            "felt": null,
+            "cdi": null,
+            "mmi": null,
+            "alert": null,
+            "status": "reviewed",
+            "tsunami": 0,
+            "sig": 395,
+            "net": "us",
+            "code": "7000pqrsu",
+            "ids": ",us7000pqrsu,",
+            "sources": ",us,",
+            "types": ",origin,",
+            "nst": 45,
+            "dmin": 5.234,
+            "rms": 0.65,
+            "gap": 78,
+            "magType": "mb",
+            "type": "earthquake",
+            "title": "M 5.1 - South of the Fiji Islands"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-177.2341, -22.8923, 560.0]
+          },
+          "id": "us7000pqrsu"
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "mag": 4.8,
+            "place": "26 km SSW of Ridgecrest, California",
+            "time": 1745721600000,
+            "updated": 1745725000000,
+            "tz": -420,
+            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci39876543",
+            "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=ci39876543&format=geojson",
+            "felt": 1289,
+            "cdi": 5.4,
+            "mmi": 5.2,
+            "alert": null,
+            "status": "reviewed",
+            "tsunami": 0,
+            "sig": 360,
+            "net": "ci",
+            "code": "39876543",
+            "ids": ",ci39876543,us7000pqrsv,",
+            "sources": ",ci,us,",
+            "types": ",dyfi,origin,phase-data,shakemap,",
+            "nst": 123,
+            "dmin": 0.123,
+            "rms": 0.43,
+            "gap": 24,
+            "magType": "mw",
+            "type": "earthquake",
+            "title": "M 4.8 - 26 km SSW of Ridgecrest, California"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-117.8234, 35.4321, 8.0]
+          },
+          "id": "ci39876543"
+        }
+      ],
+      "bbox": [-177.2341, -22.8923, 8.0, 121.8934, 35.4321, 560.0]
+    }
+  }
+}
