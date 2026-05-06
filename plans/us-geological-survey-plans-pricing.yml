@@ -4,155 +4,51 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: US Geological Survey
 providerId: us-geological-survey
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Federal Government
   - Earth Science
   - Earthquakes
   - Water Data
   - Geospatial
-  - Hazards
-  - Environment
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: USGS APIs (earthquake catalog, water data, geomagnetic, seismic design, ScienceBase, etc.) are free public services. There is no commercial pricing. Most endpoints do not require an API key, though some use api.data.gov fronting; high-volume consumers are directed to real-time feeds and bulk downloads rather than tight API polling.
+sources:
+  - https://www.usgs.gov/products/web-tools/apis
+  - https://earthquake.usgs.gov/fdsnws/event/1/
 plans:
-  - id: us-geological-survey-free
-    name: Free
+  - id: us-geological-survey-public
+    name: Public API Access
     type: freemium
-    description: Free entry tier for the US Geological Survey API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: Free public access to USGS data services. No charge, no key required for most endpoints; some federated services route through api.data.gov and inherit its 1,000 req/hr per-key default.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: USGS Earthquake Catalog API
-      - name: USGS Water Data OGC API
-      - name: USGS ScienceBase Catalog API
-      - name: USGS Geomagnetism Web Service
-      - name: USGS Seismic Design Data Web Services
-      - name: USGS National Map Services
-  - id: us-geological-survey-pro
-    name: Professional
-    type: paid
-    description: Production tier for US Geological Survey. Provides higher quotas, priority support, and
-      access to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+      - label: Public API Access
+        name: public_access
+        type: flat
+        metric: request
         limit: -1
-        timeFrame: month
+        timeFrame: usage
         geo: global
-        domains: []
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: '0'
         userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: USGS Earthquake Catalog API
-      - name: USGS Water Data OGC API
-      - name: USGS ScienceBase Catalog API
-      - name: USGS Geomagnetism Web Service
-      - name: USGS Seismic Design Data Web Services
-      - name: USGS National Map Services
-  - id: us-geological-survey-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for US Geological Survey. Includes dedicated capacity, contractual
-      SLAs, security review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
+      - label: FDSN Event Query Result Cap
+        name: fdsn_event_query_cap
         type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains: []
+        metric: result
+        limit: 20000
+        timeFrame: usage
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
+        price: '0'
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: USGS Earthquake Catalog API
-      - name: USGS Water Data OGC API
-      - name: USGS ScienceBase Catalog API
-      - name: USGS Geomagnetism Web Service
-      - name: USGS Seismic Design Data Web Services
-      - name: USGS National Map Services
+      - name: Earthquake Real-Time GeoJSON Feeds
+      - name: FDSN Event Web Service (CSV / GeoJSON / QuakeML / KML / ATOM)
+      - name: Water Data REST APIs
+      - name: Geomagnetic Data Web Services
+      - name: Seismic Design Data Web Services
+      - name: ScienceBase APIs
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
