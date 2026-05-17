@@ -125,7 +125,7 @@ tags:
   - Geospatial
   - Hazards
   - Environment
-type: Contract
+kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2024-12-03'
