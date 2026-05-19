@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: USGS Water Data OGC API — Field Measurements
+  description: 'USGS Water Data OGC API — Field Measurements. 1 operations. Lead operation: Query Field Measurements. Self-contained
+    Naftiko capability covering one Us Geological Survey business surface.'
+  tags:
+  - Us Geological Survey
+  - Field Measurements
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    US_GEOLOGICAL_SURVEY_API_KEY: US_GEOLOGICAL_SURVEY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: usgs-water-data-field-measurements
+    baseUri: https://api.waterdata.usgs.gov/ogcapi/v0
+    description: USGS Water Data OGC API — Field Measurements business capability. Self-contained, no shared references.
+    resources:
+    - name: collections-field-measurements-items
+      path: /collections/field-measurements/items
+      operations:
+      - name: queryfieldmeasurements
+        method: GET
+        description: Query Field Measurements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: monitoringLocationIdentifier
+          in: query
+          type: string
+          description: USGS monitoring location identifier
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.US_GEOLOGICAL_SURVEY_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: usgs-water-data-field-measurements-rest
+    port: 8080
+    description: REST adapter for USGS Water Data OGC API — Field Measurements. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/collections/field-measurements/items
+      name: collections-field-measurements-items
+      description: REST surface for collections-field-measurements-items.
+      operations:
+      - method: GET
+        name: queryfieldmeasurements
+        description: Query Field Measurements
+        call: usgs-water-data-field-measurements.queryfieldmeasurements
+        with:
+          monitoringLocationIdentifier: rest.monitoringLocationIdentifier
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: usgs-water-data-field-measurements-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for USGS Water Data OGC API — Field Measurements. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: query-field-measurements
+      description: Query Field Measurements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: usgs-water-data-field-measurements.queryfieldmeasurements
+      with:
+        monitoringLocationIdentifier: tools.monitoringLocationIdentifier
+      outputParameters:
+      - type: object
+        mapping: $.

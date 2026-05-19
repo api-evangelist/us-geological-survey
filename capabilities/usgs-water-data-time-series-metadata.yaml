@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: USGS Water Data OGC API — Time Series Metadata
+  description: 'USGS Water Data OGC API — Time Series Metadata. 1 operations. Lead operation: Query Time Series Metadata.
+    Self-contained Naftiko capability covering one Us Geological Survey business surface.'
+  tags:
+  - Us Geological Survey
+  - Time Series Metadata
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    US_GEOLOGICAL_SURVEY_API_KEY: US_GEOLOGICAL_SURVEY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: usgs-water-data-time-series-metadata
+    baseUri: https://api.waterdata.usgs.gov/ogcapi/v0
+    description: USGS Water Data OGC API — Time Series Metadata business capability. Self-contained, no shared references.
+    resources:
+    - name: collections-time-series-metadata-items
+      path: /collections/time-series-metadata/items
+      operations:
+      - name: querytimeseriesmetadata
+        method: GET
+        description: Query Time Series Metadata
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: monitoringLocationIdentifier
+          in: query
+          type: string
+          description: USGS monitoring location identifier
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.US_GEOLOGICAL_SURVEY_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: usgs-water-data-time-series-metadata-rest
+    port: 8080
+    description: REST adapter for USGS Water Data OGC API — Time Series Metadata. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/collections/time-series-metadata/items
+      name: collections-time-series-metadata-items
+      description: REST surface for collections-time-series-metadata-items.
+      operations:
+      - method: GET
+        name: querytimeseriesmetadata
+        description: Query Time Series Metadata
+        call: usgs-water-data-time-series-metadata.querytimeseriesmetadata
+        with:
+          monitoringLocationIdentifier: rest.monitoringLocationIdentifier
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: usgs-water-data-time-series-metadata-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for USGS Water Data OGC API — Time Series Metadata. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: query-time-series-metadata
+      description: Query Time Series Metadata
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: usgs-water-data-time-series-metadata.querytimeseriesmetadata
+      with:
+        monitoringLocationIdentifier: tools.monitoringLocationIdentifier
+      outputParameters:
+      - type: object
+        mapping: $.
