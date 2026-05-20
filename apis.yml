@@ -1,5 +1,10 @@
 aid: us-geological-survey
 url: https://raw.githubusercontent.com/api-evangelist/us-geological-survey/refs/heads/main/apis.yml
+common:
+  - type: GitHubOrganization
+    url: https://github.com/usgs
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/usgs
 apis:
 - aid: us-geological-survey:earthquake-catalog-api
   name: USGS Earthquake Catalog API
