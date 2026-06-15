@@ -1,0 +1,2228 @@
+{
+  "item": [
+    {
+      "id": "6d2b8f47-5a30-4a03-a604-5db67aaa44cd",
+      "name": "Collections",
+      "description": {
+        "content": "OGC API collection discovery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ead3be3-45bd-4d70-ac80-0ef103056640",
+          "name": "Get Landing Page",
+          "request": {
+            "name": "Get Landing Page",
+            "description": {
+              "content": "Returns the API landing page with links to available resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95d77765-e335-43e4-a8e2-6b5009fe6ea1",
+              "name": "Landing page",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a35a0326-b3a2-44f3-8d77-7885503902f7",
+              "name": "API key missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c442f29-501b-444c-a842-a68f8ee129a5",
+          "name": "List Collections",
+          "request": {
+            "name": "List Collections",
+            "description": {
+              "content": "Returns a list of all available data collections in the USGS Water Data API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "363f6897-49bb-466e-8927-a77852f9170a",
+              "name": "List of available collections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collections\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"links\": [\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"type\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"type\": \"string\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"links\": [\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"type\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"type\": \"string\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c75d95f-eafb-4ad1-90ac-92386a839277",
+              "name": "API key missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5ea44d84-a2e7-4011-b141-f80a5e02353d",
+      "name": "Continuous Values",
+      "description": {
+        "content": "Real-time and historical continuous sensor measurements",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8eec1b0d-8a76-4ad5-9adc-527e32856f7b",
+          "name": "Query Continuous Values",
+          "request": {
+            "name": "Query Continuous Values",
+            "description": {
+              "content": "Returns high-frequency continuous measurement data from USGS automated sensor networks. Includes streamflow, gage height, temperature, and hundreds of other parameters measured at monitoring locations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                "continuous-values",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<number>,<number>,<number>,<number>",
+                  "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime",
+                  "value": "<string>",
+                  "description": "Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of features to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Starting offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "CQL2 text filter expression for advanced querying"
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "properties",
+                  "value": "<string>,<string>",
+                  "description": "Comma-separated list of properties to include in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortby",
+                  "value": "<string>",
+                  "description": "Property name to sort results by (prefix with - for descending)"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoringLocationIdentifier",
+                  "value": "<string>",
+                  "description": "USGS monitoring location identifier (e.g., USGS-01646500)"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameterCode",
+                  "value": "<string>",
+                  "description": "USGS parameter code for the measurement type (e.g., 00060 for discharge)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44a6efed-60f5-4ddc-8d41-a0f8314635f7",
+              "name": "Continuous measurement features",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "continuous-values",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "properties",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "sortby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameterCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ],\n  \"numberMatched\": 6721,\n  \"numberReturned\": 29,\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6081be3e-e1f0-436b-8c8c-5b18bfa0c680",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "continuous-values",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "properties",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "sortby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameterCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2757195c-e04a-4c03-ae15-5b9c5ed40fb6",
+              "name": "API key missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "continuous-values",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "properties",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "sortby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameterCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdfc26ff-9d98-4cbb-99fe-d44d78918bec",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "continuous-values",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "properties",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "sortby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameterCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c4c757f9-53bc-4eb4-a615-4deff52d6557",
+      "name": "Daily Values",
+      "description": {
+        "content": "Daily summary water data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3616f028-9487-4739-b503-157a06679a33",
+          "name": "Query Daily Values",
+          "request": {
+            "name": "Query Daily Values",
+            "description": {
+              "content": "Returns daily summary water data including mean, median, maximum, and minimum values for streams, lakes, and wells. Aggregates continuous sensor data into daily statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                "daily-values",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<number>,<number>,<number>,<number>",
+                  "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime",
+                  "value": "<string>",
+                  "description": "Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of features to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Starting offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "CQL2 text filter expression for advanced querying"
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoringLocationIdentifier",
+                  "value": "<string>",
+                  "description": "USGS monitoring location identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameterCode",
+                  "value": "<string>",
+                  "description": "USGS parameter code"
+                },
+                {
+                  "disabled": false,
+                  "key": "statCode",
+                  "value": "<string>",
+                  "description": "Statistical code (e.g., 00003 for mean, 00001 for max)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3635f5a1-3892-449a-bf66-f82f5f7dceb0",
+              "name": "Daily value features",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "daily-values",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameterCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ],\n  \"numberMatched\": 6721,\n  \"numberReturned\": 29,\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cb07fbc-c621-4647-91fd-50e1cb890280",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "daily-values",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameterCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d47654f6-447e-4253-87fb-3274b547340c",
+              "name": "API key missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "daily-values",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameterCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3d398e5-871f-4b45-9af5-e67ef7d0dbf4",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "daily-values",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameterCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "66fcffa4-e22c-404c-819a-1ce698580bfb",
+      "name": "Monitoring Locations",
+      "description": {
+        "content": "Geographic and metadata for USGS monitoring stations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f06df5ad-aaa9-424d-9374-a7438ebffeaa",
+          "name": "Query Monitoring Locations",
+          "request": {
+            "name": "Query Monitoring Locations",
+            "description": {
+              "content": "Returns geographic and identification information for USGS water monitoring stations including names, identifiers, coordinates, and hydrologic unit codes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                "monitoring-locations",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<number>,<number>,<number>,<number>",
+                  "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of features to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Starting offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "CQL2 text filter expression for advanced querying"
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoringLocationIdentifier",
+                  "value": "<string>",
+                  "description": "USGS monitoring location identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoringLocationType",
+                  "value": "<string>",
+                  "description": "Type of monitoring location (e.g., Stream, Lake, Well)"
+                },
+                {
+                  "disabled": false,
+                  "key": "stateCd",
+                  "value": "<string>",
+                  "description": "Two-letter state abbreviation"
+                },
+                {
+                  "disabled": false,
+                  "key": "countyCd",
+                  "value": "<string>",
+                  "description": "County FIPS code"
+                },
+                {
+                  "disabled": false,
+                  "key": "hucCd",
+                  "value": "<string>",
+                  "description": "Hydrologic Unit Code (HUC)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c11b2dba-3b59-4c7d-b9ec-0638c3fc0a16",
+              "name": "Monitoring location features",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "monitoring-locations",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoringLocationType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stateCd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countyCd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hucCd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ],\n  \"numberMatched\": 6721,\n  \"numberReturned\": 29,\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d7184e5-05a0-40e4-90fe-12bc865fb3b7",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "monitoring-locations",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoringLocationType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stateCd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countyCd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hucCd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d515c87-3897-4cd5-9ffa-39b1d76faebb",
+              "name": "API key missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "monitoring-locations",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "monitoringLocationType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stateCd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countyCd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hucCd",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4daa4dad-543d-46e5-80d5-540fc0e8527e",
+          "name": "Get Monitoring Location",
+          "request": {
+            "name": "Get Monitoring Location",
+            "description": {
+              "content": "Returns details for a single USGS water monitoring location by feature ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                "monitoring-locations",
+                "items",
+                ":featureId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "featureId",
+                  "description": "(Required) Unique feature identifier for the monitoring location"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2deb6e07-3a90-4c44-ae65-08e1528af0c6",
+              "name": "Monitoring location feature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "monitoring-locations",
+                    "items",
+                    ":featureId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "featureId",
+                      "description": "(Required) Unique feature identifier for the monitoring location"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"Feature\",\n  \"id\": \"string\",\n  \"geometry\": {},\n  \"properties\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7ec1857-9ce4-4370-aa70-f61e9b4647fd",
+              "name": "API key missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "monitoring-locations",
+                    "items",
+                    ":featureId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "featureId",
+                      "description": "(Required) Unique feature identifier for the monitoring location"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df5f2968-907a-4f5f-8faf-1f74637d3fcc",
+              "name": "Feature not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "monitoring-locations",
+                    "items",
+                    ":featureId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "featureId",
+                      "description": "(Required) Unique feature identifier for the monitoring location"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3ec068a5-da5f-4f2b-9e8f-84f6ab30fe3d",
+      "name": "Field Measurements",
+      "description": {
+        "content": "Physically measured values from site visits",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4eeecb80-a325-4b22-9884-af1b0d790043",
+          "name": "Query Field Measurements",
+          "request": {
+            "name": "Query Field Measurements",
+            "description": {
+              "content": "Returns physically measured values collected during site visits by USGS hydrographers, including streamflow measurements used to define rating curves for continuous data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                "field-measurements",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<number>,<number>,<number>,<number>",
+                  "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime",
+                  "value": "<string>",
+                  "description": "Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of features to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Starting offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "CQL2 text filter expression for advanced querying"
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoringLocationIdentifier",
+                  "value": "<string>",
+                  "description": "USGS monitoring location identifier"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c18309b-bcdb-4c72-a12e-b6e180da4129",
+              "name": "Field measurement features",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "field-measurements",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ],\n  \"numberMatched\": 6721,\n  \"numberReturned\": 29,\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25da439b-a6a3-45d8-b15d-266c7252f246",
+              "name": "API key missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "field-measurements",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7113e464-f720-4e28-b754-e0ee7c2389d3",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "field-measurements",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "datetime",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "79cd8730-4aed-4c6c-ad89-6afd34a5264f",
+      "name": "Time Series Metadata",
+      "description": {
+        "content": "Metadata about time series observations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ea020411-b9b2-4b14-b2c6-1c2c2720726b",
+          "name": "Query Time Series Metadata",
+          "request": {
+            "name": "Query Time Series Metadata",
+            "description": {
+              "content": "Returns metadata about grouped observations including operational thresholds, units of measurement, and time series characteristics for USGS monitoring locations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                "time-series-metadata",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<number>,<number>,<number>,<number>",
+                  "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of features to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Starting offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "CQL2 text filter expression for advanced querying"
+                },
+                {
+                  "disabled": false,
+                  "key": "f",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitoringLocationIdentifier",
+                  "value": "<string>",
+                  "description": "USGS monitoring location identifier"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "576a9178-b80a-40d1-b1c9-c3e4f21c790e",
+              "name": "Time series metadata features",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "time-series-metadata",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"Feature\",\n      \"id\": \"string\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ],\n  \"numberMatched\": 9043,\n  \"numberReturned\": 3215,\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"type\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0307cd17-d63d-4e78-85b8-9106fe009c18",
+              "name": "API key missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "time-series-metadata",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bbox",
+                      "value": "<number>,<number>,<number>,<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "f",
+                      "value": "json"
+                    },
+                    {
+                      "key": "monitoringLocationIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"API_KEY_MISSING\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.waterdata.usgs.gov/ogcapi/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4728e5c7-971a-4e09-abdf-0f40693b6d05",
+    "name": "USGS Water Data OGC API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The USGS Water Data OGC APIs provide OGC-compliant interfaces to USGS water data including real-time continuous measurements from sensor networks, daily summary values, field measurements, monitoring location metadata, and water quality data. The API follows the OGC API Features specification and supports spatial and temporal filtering via CQL2.\n\nContact Support:\n Email: wdfn@usgs.gov",
+      "type": "text/plain"
+    }
+  }
+}

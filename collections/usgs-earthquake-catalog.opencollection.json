@@ -1,0 +1,307 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USGS Earthquake Catalog API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Earthquakes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Earthquake Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format for the response"
+              },
+              {
+                "name": "starttime",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to events on or after this UTC date/time (ISO8601)"
+              },
+              {
+                "name": "endtime",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to events on or before this UTC date/time (ISO8601)"
+              },
+              {
+                "name": "updatedafter",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to events updated after this UTC date/time (ISO8601)"
+              },
+              {
+                "name": "minlatitude",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events south of this latitude (-90 to 90)"
+              },
+              {
+                "name": "maxlatitude",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events north of this latitude (-90 to 90)"
+              },
+              {
+                "name": "minlongitude",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events east of this longitude (-360 to 360)"
+              },
+              {
+                "name": "maxlongitude",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events west of this longitude (-360 to 360)"
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query",
+                "description": "Latitude for circle search center (requires longitude and maxradius)"
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query",
+                "description": "Longitude for circle search center (requires latitude and maxradius)"
+              },
+              {
+                "name": "maxradius",
+                "value": "",
+                "type": "query",
+                "description": "Maximum radius in degrees for circle search"
+              },
+              {
+                "name": "maxradiuskm",
+                "value": "",
+                "type": "query",
+                "description": "Maximum radius in kilometers for circle search"
+              },
+              {
+                "name": "minmagnitude",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events with magnitude larger than this value"
+              },
+              {
+                "name": "maxmagnitude",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events with magnitude smaller than this value"
+              },
+              {
+                "name": "mindepth",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events with depth more than this value in km"
+              },
+              {
+                "name": "maxdepth",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events with depth less than this value in km"
+              },
+              {
+                "name": "eventtype",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events of a specific type (e.g., earthquake, explosion)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of events to return (1-20000)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Return results starting at this offset (for pagination)"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Order results by field"
+              },
+              {
+                "name": "catalog",
+                "value": "",
+                "type": "query",
+                "description": "Specify a specific earthquake catalog to query"
+              },
+              {
+                "name": "contributor",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events contributed by a specific contributor"
+              },
+              {
+                "name": "eventid",
+                "value": "",
+                "type": "query",
+                "description": "Select a specific event by event ID"
+              },
+              {
+                "name": "includeallmagnitudes",
+                "value": "",
+                "type": "query",
+                "description": "Include all available magnitudes for events"
+              },
+              {
+                "name": "includeallorigins",
+                "value": "",
+                "type": "query",
+                "description": "Include all available origins for events"
+              },
+              {
+                "name": "includedeleted",
+                "value": "",
+                "type": "query",
+                "description": "Include deleted events"
+              },
+              {
+                "name": "includesuperseded",
+                "value": "",
+                "type": "query",
+                "description": "Include superseded events"
+              },
+              {
+                "name": "reviewstatus",
+                "value": "",
+                "type": "query",
+                "description": "Limit to events with a specific review status"
+              }
+            ]
+          },
+          "docs": "Submit a query to the USGS earthquake catalog using various filter parameters. Returns earthquake events matching the specified criteria in the requested format. Defaults to events from the past 30 days if no time range is specified."
+        },
+        {
+          "info": {
+            "name": "Count Earthquake Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/count",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format"
+              },
+              {
+                "name": "starttime",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to events on or after this date/time (ISO8601)"
+              },
+              {
+                "name": "endtime",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to events on or before this date/time (ISO8601)"
+              },
+              {
+                "name": "minlatitude",
+                "value": "",
+                "type": "query",
+                "description": "Minimum latitude boundary"
+              },
+              {
+                "name": "maxlatitude",
+                "value": "",
+                "type": "query",
+                "description": "Maximum latitude boundary"
+              },
+              {
+                "name": "minlongitude",
+                "value": "",
+                "type": "query",
+                "description": "Minimum longitude boundary"
+              },
+              {
+                "name": "maxlongitude",
+                "value": "",
+                "type": "query",
+                "description": "Maximum longitude boundary"
+              },
+              {
+                "name": "minmagnitude",
+                "value": "",
+                "type": "query",
+                "description": "Minimum magnitude filter"
+              },
+              {
+                "name": "maxmagnitude",
+                "value": "",
+                "type": "query",
+                "description": "Maximum magnitude filter"
+              }
+            ]
+          },
+          "docs": "Returns the number of earthquakes matching the specified query parameters without returning the full event data. Accepts the same parameters as the query endpoint."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Earthquake Catalogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/catalogs"
+          },
+          "docs": "Returns a list of available earthquake catalogs that can be queried."
+        },
+        {
+          "info": {
+            "name": "List Data Contributors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/contributors"
+          },
+          "docs": "Returns a list of available data contributors to the earthquake catalog."
+        },
+        {
+          "info": {
+            "name": "Get API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/version"
+          },
+          "docs": "Returns the full version number of the earthquake catalog web service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

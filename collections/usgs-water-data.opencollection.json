@@ -1,0 +1,446 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USGS Water Data OGC API",
+    "version": "0.49.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Landing Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.waterdata.usgs.gov/ogcapi/v0/",
+            "params": [
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns the API landing page with links to available resources."
+        },
+        {
+          "info": {
+            "name": "List Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections",
+            "params": [
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns a list of all available data collections in the USGS Water Data API."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Continuous Values",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Continuous Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/continuous-values/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "datetime",
+                "value": "",
+                "type": "query",
+                "description": "Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "properties",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in response"
+              },
+              {
+                "name": "sortby",
+                "value": "",
+                "type": "query",
+                "description": "Property name to sort results by (prefix with - for descending)"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier (e.g., USGS-01646500)"
+              },
+              {
+                "name": "parameterCode",
+                "value": "",
+                "type": "query",
+                "description": "USGS parameter code for the measurement type (e.g., 00060 for discharge)"
+              }
+            ]
+          },
+          "docs": "Returns high-frequency continuous measurement data from USGS automated sensor networks. Includes streamflow, gage height, temperature, and hundreds of other parameters measured at monitoring locations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Daily Values",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Daily Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/daily-values/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "datetime",
+                "value": "",
+                "type": "query",
+                "description": "Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier"
+              },
+              {
+                "name": "parameterCode",
+                "value": "",
+                "type": "query",
+                "description": "USGS parameter code"
+              },
+              {
+                "name": "statCode",
+                "value": "",
+                "type": "query",
+                "description": "Statistical code (e.g., 00003 for mean, 00001 for max)"
+              }
+            ]
+          },
+          "docs": "Returns daily summary water data including mean, median, maximum, and minimum values for streams, lakes, and wells. Aggregates continuous sensor data into daily statistics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Monitoring Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Monitoring Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier"
+              },
+              {
+                "name": "monitoringLocationType",
+                "value": "",
+                "type": "query",
+                "description": "Type of monitoring location (e.g., Stream, Lake, Well)"
+              },
+              {
+                "name": "stateCd",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter state abbreviation"
+              },
+              {
+                "name": "countyCd",
+                "value": "",
+                "type": "query",
+                "description": "County FIPS code"
+              },
+              {
+                "name": "hucCd",
+                "value": "",
+                "type": "query",
+                "description": "Hydrologic Unit Code (HUC)"
+              }
+            ]
+          },
+          "docs": "Returns geographic and identification information for USGS water monitoring stations including names, identifiers, coordinates, and hydrologic unit codes."
+        },
+        {
+          "info": {
+            "name": "Get Monitoring Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items/:featureId",
+            "params": [
+              {
+                "name": "featureId",
+                "value": "",
+                "type": "path",
+                "description": "Unique feature identifier for the monitoring location"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns details for a single USGS water monitoring location by feature ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Time Series Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Time Series Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/time-series-metadata/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier"
+              }
+            ]
+          },
+          "docs": "Returns metadata about grouped observations including operational thresholds, units of measurement, and time series characteristics for USGS monitoring locations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Field Measurements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Field Measurements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/field-measurements/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "datetime",
+                "value": "",
+                "type": "query",
+                "description": "Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier"
+              }
+            ]
+          },
+          "docs": "Returns physically measured values collected during site visits by USGS hydrographers, including streamflow measurements used to define rating curves for continuous data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

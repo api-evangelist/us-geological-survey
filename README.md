@@ -1,95 +1,167 @@
-# US Geological Survey
+# US Geological Survey (us-geological-survey)
 
 The US Geological Survey is a scientific agency of the United States government that conducts research on the natural resources, natural hazards, and environmental health of the United States. The USGS is responsible for monitoring and assessing the country's water, energy, mineral, and biological resources, as well as investigating geological hazards such as earthquakes, volcanoes, landslides, and floods. USGS provides a broad portfolio of public REST APIs covering earthquake data, water resources, geomagnetism, mapping, seismic design, and scientific data catalogs - all available without cost as US Government works.
 
-**URL:** [https://www.usgs.gov](https://www.usgs.gov)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/us-geological-survey/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/us-geological-survey/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Contract
 - **Position:** Consuming
 - **Access:** 3rd-Party
 
 ## Tags
 
-`Federal Government` `Earth Science` `Earthquakes` `Water Data` `Geospatial` `Hazards` `Environment`
+- Federal Government
+- Earth Science
+- Earthquakes
+- Water Data
+- Geospatial
+- Hazards
+- Environment
 
 ## Timestamps
 
 - **Created:** 2024-12-03
-- **Modified:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
-| API | Description |
-|-----|-------------|
-| [USGS Earthquake Catalog API](https://earthquake.usgs.gov/fdsnws/event/1/) | FDSN event web service for real-time and historical earthquake data |
-| [USGS Water Data OGC API](https://api.waterdata.usgs.gov) | OGC-compliant water measurements, daily values, and monitoring locations |
-| [USGS ScienceBase Catalog API](https://www.sciencebase.gov/catalog/) | Scientific data management and catalog services |
-| [USGS Geomagnetism Web Service](https://www.usgs.gov/tools/web-service-geomagnetism-data) | Geomagnetic data from USGS observatories |
-| [USGS Seismic Design Data Services](https://earthquake.usgs.gov/ws/designmaps/) | Seismic design parameters for engineering applications |
-| [USGS National Map Services](https://apps.nationalmap.gov/api/) | Topographic, elevation, and geospatial data services |
+### USGS Earthquake Catalog API
 
-## OpenAPI Specifications
+The USGS Earthquake Catalog API implements the FDSN Event Web Service Specification, providing real-time and historical access to global earthquake data from the USGS National Earthquake Information Center. Query by time, location, magnitude, depth, and other parameters. Returns data in GeoJSON, QuakeML, KML, CSV, or text formats. No authentication required.
 
-| Spec | Description |
-|------|-------------|
-| [Earthquake Catalog API](openapi/usgs-earthquake-catalog-openapi.yml) | OpenAPI 3.0 spec for USGS earthquake catalog |
-| [Water Data OGC API](openapi/usgs-water-data-openapi.yml) | OpenAPI 3.0 spec for USGS water data services |
+- **Human URL:** [https://earthquake.usgs.gov/fdsnws/event/1/](https://earthquake.usgs.gov/fdsnws/event/1/)
 
-## Spectral Rules
+#### Tags
 
-| Ruleset | Description |
-|---------|-------------|
-| [Earthquake API Rules](rules/usgs-earthquake-api-rules.yml) | Spectral rules for USGS earthquake API conventions |
+- Earthquakes
+- Seismology
+- Hazards
+- Federal Government
 
-## Naftiko Capabilities
+#### Properties
 
-### Workflow Capabilities
+- [Documentation](https://earthquake.usgs.gov/fdsnws/event/1/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/us-geological-survey/refs/heads/main/openapi/usgs-earthquake-catalog-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/usgs-earthquake-catalog.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-earthquake-catalog.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/usgs-water-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-water-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-| Capability | Description |
-|------------|-------------|
-| [Earth Science Monitoring](capabilities/earth-science-monitoring.yaml) | Combined earthquake and water data monitoring |
+### USGS Water Data OGC API
 
-### Shared API Definitions
+The USGS Water Data OGC APIs provide OGC-compliant interfaces to USGS water data including real-time continuous measurements from automated sensor networks, daily summary values, field measurements, and monitoring location metadata. Covers streamflow, gage height, groundwater levels, water quality, and hundreds of other parameters. API key required. Legacy WaterServices decommissioning in Q1 2027.
 
-| Shared Definition | Description |
-|-------------------|-------------|
-| [USGS Earthquake Catalog](capabilities/shared/usgs-earthquake-catalog.yaml) | Shared definition for earthquake catalog API |
-| [USGS Water Data](capabilities/shared/usgs-water-data.yaml) | Shared definition for water data OGC API |
+- **Human URL:** [https://api.waterdata.usgs.gov](https://api.waterdata.usgs.gov)
 
-## JSON Schema
+#### Tags
 
-| Schema | Description |
-|--------|-------------|
-| [Earthquake Feature](json-schema/usgs-earthquake-feature-schema.json) | Schema for USGS earthquake GeoJSON feature |
+- Water Data
+- Hydrology
+- Streamflow
+- Federal Government
 
-## JSON Structure
+#### Properties
 
-| Structure | Description |
-|-----------|-------------|
-| [Earthquake Feature Structure](json-structure/usgs-earthquake-feature-structure.json) | Field documentation for earthquake events |
+- [Documentation](https://api.waterdata.usgs.gov)
+- [OpenAPI](https://api.waterdata.usgs.gov/ogcapi/v0/openapi?f=json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/us-geological-survey/refs/heads/main/openapi/usgs-water-data-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/usgs-earthquake-catalog.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-earthquake-catalog.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/usgs-water-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-water-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## JSON-LD
+### USGS ScienceBase Catalog API
 
-| Context | Description |
-|---------|-------------|
-| [USGS Context](json-ld/us-geological-survey-context.jsonld) | Linked data context for USGS earth science data |
+The USGS ScienceBase Catalog API provides access to USGS scientific data management infrastructure, enabling upload, documentation, sharing, and dynamic data services for USGS research datasets and scientific publications.
 
-## Examples
+- **Human URL:** [https://www.sciencebase.gov/catalog/](https://www.sciencebase.gov/catalog/)
 
-| Example | Description |
-|---------|-------------|
-| [Earthquake Query Example](examples/usgs-earthquake-query-example.json) | Example GeoJSON response from earthquake catalog |
+#### Tags
 
-## Vocabulary
+- Scientific Data
+- Research
+- Catalog
+- Federal Government
 
-| Vocabulary | Description |
-|------------|-------------|
-| [USGS Vocabulary](vocabulary/us-geological-survey-vocabulary.yml) | Domain vocabulary for seismology, hydrology, and geospatial science |
+#### Properties
+
+- [Documentation](https://www.sciencebase.gov/catalog/)
+- [Swagger U I](https://www.sciencebase.gov/catalog/swagger-ui.html)
+- [Postman Collection](collections/usgs-earthquake-catalog.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-earthquake-catalog.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/usgs-water-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-water-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### USGS Geomagnetism Web Service
+
+The USGS Geomagnetism Web Service provides programmatic access to geomagnetic data collected by USGS magnetic observatories across the United States and territories, supporting navigation, space weather, and geophysical research.
+
+- **Human URL:** [https://www.usgs.gov/tools/web-service-geomagnetism-data](https://www.usgs.gov/tools/web-service-geomagnetism-data)
+
+#### Tags
+
+- Geomagnetism
+- Magnetic Data
+- Federal Government
+
+#### Properties
+
+- [Documentation](https://www.usgs.gov/tools/web-service-geomagnetism-data)
+- [Base U R L](https://geomag.usgs.gov/ws/edge/)
+- [Postman Collection](collections/usgs-earthquake-catalog.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-earthquake-catalog.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/usgs-water-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-water-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### USGS Seismic Design Data Web Services
+
+The USGS Seismic Design Data Web Services provide parameter values from seismic design reference documents for building and infrastructure design, supporting compliance with ASCE 7 and other engineering standards.
+
+- **Human URL:** [https://earthquake.usgs.gov/ws/designmaps/](https://earthquake.usgs.gov/ws/designmaps/)
+
+#### Tags
+
+- Seismic Design
+- Engineering
+- Hazards
+- Federal Government
+
+#### Properties
+
+- [Documentation](https://earthquake.usgs.gov/ws/designmaps/)
+- [Postman Collection](collections/usgs-earthquake-catalog.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-earthquake-catalog.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/usgs-water-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-water-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### USGS National Map Services
+
+The USGS National Map services provide geospatial data and elevation products via OGC web services, REST APIs, and download services covering topographic data, imagery, hydrography, boundaries, transportation, structures, and land cover for the United States.
+
+- **Human URL:** [https://apps.nationalmap.gov/api/](https://apps.nationalmap.gov/api/)
+
+#### Tags
+
+- Mapping
+- Geospatial
+- Topography
+- Federal Government
+
+#### Properties
+
+- [Documentation](https://apps.nationalmap.gov/api/)
+- [Postman Collection](collections/usgs-earthquake-catalog.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-earthquake-catalog.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/usgs-water-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/usgs-water-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [GitHub Organization](https://github.com/usgs)
+- [LinkedIn](https://www.linkedin.com/company/usgs)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
