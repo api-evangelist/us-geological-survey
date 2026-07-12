@@ -1,6 +1,10 @@
 aid: us-geological-survey
 url: https://raw.githubusercontent.com/api-evangelist/us-geological-survey/refs/heads/main/apis.yml
 common:
+  - type: DomainSecurity
+    url: security/us-geological-survey-domain-security.yml
+  - type: Authentication
+    url: authentication/us-geological-survey-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/usgs
   - type: LinkedIn
