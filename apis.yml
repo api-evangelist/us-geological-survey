@@ -1,6 +1,8 @@
 aid: us-geological-survey
 url: https://raw.githubusercontent.com/api-evangelist/us-geological-survey/refs/heads/main/apis.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/us-geological-survey-agentic-access.yml
   - type: DomainSecurity
     url: security/us-geological-survey-domain-security.yml
   - type: Authentication
