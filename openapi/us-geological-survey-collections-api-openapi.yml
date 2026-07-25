@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: USGS Earthquake Catalog Collections API
+  description: The USGS Earthquake Catalog API is an implementation of the FDSN Event Web Service Specification, providing real-time and historical access to earthquake catalog data from the USGS National Earthquake Information Center (NEIC) and contributing networks. The API allows queries by location, time, magnitude, depth, and other parameters with results in multiple formats.
+  version: '1.0'
+  contact:
+    email: eq_questions@usgs.gov
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  license:
+    name: US Government Work
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://earthquake.usgs.gov/fdsnws/event/1
+  description: USGS Earthquake Catalog Production Server
+tags:
+- name: Collections
+  description: OGC API collection discovery
+paths:
+  /:
+    get:
+      operationId: getLandingPage
+      summary: Get Landing Page
+      description: Returns the API landing page with links to available resources.
+      tags:
+      - Collections
+      parameters:
+      - $ref: '#/components/parameters/formatParam'
+      responses:
+        '200':
+          description: Landing page
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+  /collections:
+    get:
+      operationId: listCollections
+      summary: List Collections
+      description: Returns a list of all available data collections in the USGS Water Data API.
+      tags:
+      - Collections
+      parameters:
+      - $ref: '#/components/parameters/formatParam'
+      responses:
+        '200':
+          description: List of available collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionsList'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: API key missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          enum:
+          - API_KEY_MISSING
+          - OVER_RATE_LIMIT
+        message:
+          type: string
+          description: Human-readable error message
+    CollectionsList:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Collection identifier
+              title:
+                type: string
+                description: Human-readable title
+              description:
+                type: string
+                description: Description of the collection
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          description: URL of the link
+        rel:
+          type: string
+          description: Link relation type
+        type:
+          type: string
+          description: Media type
+        title:
+          type: string
+          description: Human-readable title
+  parameters:
+    formatParam:
+      name: f
+      in: query
+      description: Response format
+      required: false
+      schema:
+        type: string
+        enum:
+        - json
+        - html
+        - jsonld
+        - csv
+        default: json

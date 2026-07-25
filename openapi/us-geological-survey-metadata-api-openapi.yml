@@ -1,0 +1,60 @@
+openapi: 3.0.3
+info:
+  title: USGS Earthquake Catalog Collections Metadata API
+  description: The USGS Earthquake Catalog API is an implementation of the FDSN Event Web Service Specification, providing real-time and historical access to earthquake catalog data from the USGS National Earthquake Information Center (NEIC) and contributing networks. The API allows queries by location, time, magnitude, depth, and other parameters with results in multiple formats.
+  version: '1.0'
+  contact:
+    email: eq_questions@usgs.gov
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  license:
+    name: US Government Work
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://earthquake.usgs.gov/fdsnws/event/1
+  description: USGS Earthquake Catalog Production Server
+tags:
+- name: Metadata
+  description: API metadata and discovery operations
+paths:
+  /catalogs:
+    get:
+      operationId: listCatalogs
+      summary: List Earthquake Catalogs
+      description: Returns a list of available earthquake catalogs that can be queried.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: List of available catalogs
+          content:
+            application/xml:
+              schema:
+                type: string
+  /contributors:
+    get:
+      operationId: listContributors
+      summary: List Data Contributors
+      description: Returns a list of available data contributors to the earthquake catalog.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: List of available contributors
+          content:
+            application/xml:
+              schema:
+                type: string
+  /version:
+    get:
+      operationId: getVersion
+      summary: Get API Version
+      description: Returns the full version number of the earthquake catalog web service.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: Service version number
+          content:
+            text/plain:
+              schema:
+                type: string

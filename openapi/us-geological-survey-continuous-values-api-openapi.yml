@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: USGS Earthquake Catalog Collections Continuous Values API
+  description: The USGS Earthquake Catalog API is an implementation of the FDSN Event Web Service Specification, providing real-time and historical access to earthquake catalog data from the USGS National Earthquake Information Center (NEIC) and contributing networks. The API allows queries by location, time, magnitude, depth, and other parameters with results in multiple formats.
+  version: '1.0'
+  contact:
+    email: eq_questions@usgs.gov
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  license:
+    name: US Government Work
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://earthquake.usgs.gov/fdsnws/event/1
+  description: USGS Earthquake Catalog Production Server
+tags:
+- name: Continuous Values
+  description: Real-time and historical continuous sensor measurements
+paths:
+  /collections/continuous-values/items:
+    get:
+      operationId: queryContinuousValues
+      summary: Query Continuous Values
+      description: Returns high-frequency continuous measurement data from USGS automated sensor networks. Includes streamflow, gage height, temperature, and hundreds of other parameters measured at monitoring locations.
+      tags:
+      - Continuous Values
+      parameters:
+      - $ref: '#/components/parameters/bboxParam'
+      - $ref: '#/components/parameters/datetimeParam'
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/filterParam'
+      - $ref: '#/components/parameters/formatParam'
+      - $ref: '#/components/parameters/propertiesParam'
+      - $ref: '#/components/parameters/sortbyParam'
+      - name: monitoringLocationIdentifier
+        in: query
+        description: USGS monitoring location identifier (e.g., USGS-01646500)
+        required: false
+        schema:
+          type: string
+      - name: parameterCode
+        in: query
+        description: USGS parameter code for the measurement type (e.g., 00060 for discharge)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Continuous measurement features
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureCollection'
+        '400':
+          description: Bad request
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+components:
+  parameters:
+    propertiesParam:
+      name: properties
+      in: query
+      description: Comma-separated list of properties to include in response
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+    bboxParam:
+      name: bbox
+      in: query
+      description: Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)
+      required: false
+      schema:
+        type: array
+        items:
+          type: number
+        minItems: 4
+        maxItems: 6
+      style: form
+      explode: false
+    offsetParam:
+      name: offset
+      in: query
+      description: Starting offset for pagination
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    filterParam:
+      name: filter
+      in: query
+      description: CQL2 text filter expression for advanced querying
+      required: false
+      schema:
+        type: string
+    sortbyParam:
+      name: sortby
+      in: query
+      description: Property name to sort results by (prefix with - for descending)
+      required: false
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of features to return
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        default: 100
+    datetimeParam:
+      name: datetime
+      in: query
+      description: Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)
+      required: false
+      schema:
+        type: string
+    formatParam:
+      name: f
+      in: query
+      description: Response format
+      required: false
+      schema:
+        type: string
+        enum:
+        - json
+        - html
+        - jsonld
+        - csv
+        default: json
+  schemas:
+    Feature:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - Feature
+        id:
+          type: string
+          description: Unique feature identifier
+        geometry:
+          type: object
+          nullable: true
+          description: GeoJSON geometry object
+        properties:
+          type: object
+          description: Feature properties
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          enum:
+          - API_KEY_MISSING
+          - OVER_RATE_LIMIT
+        message:
+          type: string
+          description: Human-readable error message
+    FeatureCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/Feature'
+        numberMatched:
+          type: integer
+          description: Total number of features matching the query
+        numberReturned:
+          type: integer
+          description: Number of features returned in this response
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+          description: URL of the link
+        rel:
+          type: string
+          description: Link relation type
+        type:
+          type: string
+          description: Media type
+        title:
+          type: string
+          description: Human-readable title
+  responses:
+    Unauthorized:
+      description: API key missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    RateLimitExceeded:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
