@@ -12,107 +12,172 @@ common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/usgs
 apis:
-  - aid: us-geological-survey:earthquake-catalog-api
-    name: USGS Earthquake Catalog API
-    tags:
-      - Earthquakes
-      - Seismology
-      - Hazards
-      - Federal Government
-    humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
-    properties:
-      - url: https://earthquake.usgs.gov/fdsnws/event/1/
-        type: Documentation
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/us-geological-survey/refs/heads/main/openapi/usgs-earthquake-catalog-openapi.yml
-        type: OpenAPI
-    description: >-
-      The USGS Earthquake Catalog API implements the FDSN Event Web Service Specification, providing real-time and
-      historical access to global earthquake data from the USGS National Earthquake Information Center. Query by time,
-      location, magnitude, depth, and other parameters. Returns data in GeoJSON, QuakeML, KML, CSV, or text formats. No
-      authentication required.
-  - aid: us-geological-survey:water-data-api
-    name: USGS Water Data OGC API
-    tags:
-      - Water Data
-      - Hydrology
-      - Streamflow
-      - Federal Government
-    humanURL: https://api.waterdata.usgs.gov
-    properties:
-      - url: https://api.waterdata.usgs.gov
-        type: Documentation
-      - url: https://api.waterdata.usgs.gov/ogcapi/v0/openapi?f=json
-        type: OpenAPI
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/us-geological-survey/refs/heads/main/openapi/usgs-water-data-openapi.yml
-        type: OpenAPI
-    description: >-
-      The USGS Water Data OGC APIs provide OGC-compliant interfaces to USGS water data including real-time continuous
-      measurements from automated sensor networks, daily summary values, field measurements, and monitoring location
-      metadata. Covers streamflow, gage height, groundwater levels, water quality, and hundreds of other parameters. API
-      key required. Legacy WaterServices decommissioning in Q1 2027.
-  - aid: us-geological-survey:sciencebase-api
-    name: USGS ScienceBase Catalog API
-    tags:
-      - Scientific Data
-      - Research
-      - Catalog
-      - Federal Government
-    humanURL: https://www.sciencebase.gov/catalog/
-    properties:
-      - url: https://www.sciencebase.gov/catalog/
-        type: Documentation
-      - url: https://www.sciencebase.gov/catalog/swagger-ui.html
-        type: SwaggerUI
-    description: >-
-      The USGS ScienceBase Catalog API provides access to USGS scientific data management infrastructure, enabling
-      upload, documentation, sharing, and dynamic data services for USGS research datasets and scientific publications.
-  - aid: us-geological-survey:geomagnetism-api
-    name: USGS Geomagnetism Web Service
-    tags:
-      - Geomagnetism
-      - Magnetic Data
-      - Federal Government
-    humanURL: https://www.usgs.gov/tools/web-service-geomagnetism-data
-    properties:
-      - url: https://www.usgs.gov/tools/web-service-geomagnetism-data
-        type: Documentation
-      - url: https://geomag.usgs.gov/ws/edge/
-        type: BaseURL
-    description: >-
-      The USGS Geomagnetism Web Service provides programmatic access to geomagnetic data collected by USGS magnetic
-      observatories across the United States and territories, supporting navigation, space weather, and geophysical
-      research.
-  - aid: us-geological-survey:seismic-design-api
-    name: USGS Seismic Design Data Web Services
-    tags:
-      - Seismic Design
-      - Engineering
-      - Hazards
-      - Federal Government
-    humanURL: https://earthquake.usgs.gov/ws/designmaps/
-    properties:
-      - url: https://earthquake.usgs.gov/ws/designmaps/
-        type: Documentation
-    description: >-
-      The USGS Seismic Design Data Web Services provide parameter values from seismic design reference documents for
-      building and infrastructure design, supporting compliance with ASCE 7 and other engineering standards.
-  - aid: us-geological-survey:national-map-api
-    name: USGS National Map Services
-    tags:
-      - Mapping
-      - Geospatial
-      - Topography
-      - Federal Government
-    humanURL: https://apps.nationalmap.gov/api/
-    properties:
-      - url: https://apps.nationalmap.gov/api/
-        type: Documentation
-    description: >-
-      The USGS National Map services provide geospatial data and elevation products via OGC web services, REST APIs, and
-      download services covering topographic data, imagery, hydrography, boundaries, transportation, structures, and
-      land cover for the United States.
+- aid: us-geological-survey:sciencebase-api
+  name: USGS ScienceBase Catalog API
+  tags:
+  - Scientific Data
+  - Research
+  - Catalog
+  - Federal Government
+  humanURL: https://www.sciencebase.gov/catalog/
+  properties:
+  - url: https://www.sciencebase.gov/catalog/
+    type: Documentation
+  - url: https://www.sciencebase.gov/catalog/swagger-ui.html
+    type: SwaggerUI
+  description: >-
+    The USGS ScienceBase Catalog API provides access to USGS scientific data management infrastructure,
+    enabling upload, documentation, sharing, and dynamic data services for USGS research datasets and
+    scientific publications.
+- aid: us-geological-survey:geomagnetism-api
+  name: USGS Geomagnetism Web Service
+  tags:
+  - Geomagnetism
+  - Magnetic Data
+  - Federal Government
+  humanURL: https://www.usgs.gov/tools/web-service-geomagnetism-data
+  properties:
+  - url: https://www.usgs.gov/tools/web-service-geomagnetism-data
+    type: Documentation
+  - url: https://geomag.usgs.gov/ws/edge/
+    type: BaseURL
+  description: >-
+    The USGS Geomagnetism Web Service provides programmatic access to geomagnetic data collected by USGS
+    magnetic observatories across the United States and territories, supporting navigation, space weather,
+    and geophysical research.
+- aid: us-geological-survey:seismic-design-api
+  name: USGS Seismic Design Data Web Services
+  tags:
+  - Seismic Design
+  - Engineering
+  - Hazards
+  - Federal Government
+  humanURL: https://earthquake.usgs.gov/ws/designmaps/
+  properties:
+  - url: https://earthquake.usgs.gov/ws/designmaps/
+    type: Documentation
+  description: >-
+    The USGS Seismic Design Data Web Services provide parameter values from seismic design reference documents
+    for building and infrastructure design, supporting compliance with ASCE 7 and other engineering standards.
+- aid: us-geological-survey:national-map-api
+  name: USGS National Map Services
+  tags:
+  - Mapping
+  - Geospatial
+  - Topography
+  - Federal Government
+  humanURL: https://apps.nationalmap.gov/api/
+  properties:
+  - url: https://apps.nationalmap.gov/api/
+    type: Documentation
+  description: >-
+    The USGS National Map services provide geospatial data and elevation products via OGC web services,
+    REST APIs, and download services covering topographic data, imagery, hydrography, boundaries, transportation,
+    structures, and land cover for the United States.
+- aid: us-geological-survey:us-geological-survey-collections-api
+  name: US Geological Survey Collections API
+  description: OGC API collection discovery
+  humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/us-geological-survey-collections-api-openapi.yml
+  - type: Documentation
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  - type: Documentation
+    url: https://api.waterdata.usgs.gov
+- aid: us-geological-survey:us-geological-survey-continuous-values-api
+  name: US Geological Survey Continuous Values API
+  description: Real-time and historical continuous sensor measurements
+  humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
+  tags:
+  - Continuous Values
+  properties:
+  - type: OpenAPI
+    url: openapi/us-geological-survey-continuous-values-api-openapi.yml
+  - type: Documentation
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  - type: Documentation
+    url: https://api.waterdata.usgs.gov
+- aid: us-geological-survey:us-geological-survey-daily-values-api
+  name: US Geological Survey Daily Values API
+  description: Daily summary water data
+  humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
+  tags:
+  - Daily Values
+  properties:
+  - type: OpenAPI
+    url: openapi/us-geological-survey-daily-values-api-openapi.yml
+  - type: Documentation
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  - type: Documentation
+    url: https://api.waterdata.usgs.gov
+- aid: us-geological-survey:us-geological-survey-earthquakes-api
+  name: US Geological Survey Earthquakes API
+  description: Earthquake catalog query and count operations
+  humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
+  tags:
+  - Earthquakes
+  properties:
+  - type: OpenAPI
+    url: openapi/us-geological-survey-earthquakes-api-openapi.yml
+  - type: Documentation
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  - type: Documentation
+    url: https://api.waterdata.usgs.gov
+- aid: us-geological-survey:us-geological-survey-field-measurements-api
+  name: US Geological Survey Field Measurements API
+  description: Physically measured values from site visits
+  humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
+  tags:
+  - Field Measurements
+  properties:
+  - type: OpenAPI
+    url: openapi/us-geological-survey-field-measurements-api-openapi.yml
+  - type: Documentation
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  - type: Documentation
+    url: https://api.waterdata.usgs.gov
+- aid: us-geological-survey:us-geological-survey-metadata-api
+  name: US Geological Survey Metadata API
+  description: API metadata and discovery operations
+  humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/us-geological-survey-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  - type: Documentation
+    url: https://api.waterdata.usgs.gov
+- aid: us-geological-survey:us-geological-survey-monitoring-locations-api
+  name: US Geological Survey Monitoring Locations API
+  description: Geographic and metadata for USGS monitoring stations
+  humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
+  tags:
+  - Monitoring Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/us-geological-survey-monitoring-locations-api-openapi.yml
+  - type: Documentation
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  - type: Documentation
+    url: https://api.waterdata.usgs.gov
+- aid: us-geological-survey:us-geological-survey-time-series-metadata-api
+  name: US Geological Survey Time Series Metadata API
+  description: Metadata about time series observations
+  humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
+  tags:
+  - Time Series Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/us-geological-survey-time-series-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  - type: Documentation
+    url: https://api.waterdata.usgs.gov
 name: US Geological Survey
 tags:
   - Federal Government
@@ -123,7 +188,20 @@ tags:
   - Hazards
   - Environment
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/us-geological-survey.png
 access: 3rd-Party
 created: '2024-12-03'
 modified: '2026-05-19'
