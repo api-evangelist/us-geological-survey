@@ -1,0 +1,28 @@
+{
+  "provider": "us-geological-survey",
+  "sources": [
+    "us-geological-survey-collections-api-openapi.yml",
+    "us-geological-survey-continuous-values-api-openapi.yml",
+    "us-geological-survey-daily-values-api-openapi.yml",
+    "us-geological-survey-earthquakes-api-openapi.yml",
+    "us-geological-survey-field-measurements-api-openapi.yml",
+    "us-geological-survey-metadata-api-openapi.yml",
+    "us-geological-survey-monitoring-locations-api-openapi.yml",
+    "us-geological-survey-time-series-metadata-api-openapi.yml"
+  ],
+  "outputs": [
+    "us-geological-survey-collections-api-openapi.yml",
+    "us-geological-survey-continuous-values-api-openapi.yml",
+    "us-geological-survey-daily-values-api-openapi.yml",
+    "us-geological-survey-earthquakes-api-openapi.yml",
+    "us-geological-survey-field-measurements-api-openapi.yml",
+    "us-geological-survey-metadata-api-openapi.yml",
+    "us-geological-survey-monitoring-locations-api-openapi.yml",
+    "us-geological-survey-time-series-metadata-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

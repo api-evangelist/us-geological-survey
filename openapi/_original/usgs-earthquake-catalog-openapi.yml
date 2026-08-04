@@ -1,0 +1,564 @@
+openapi: 3.0.3
+info:
+  title: USGS Earthquake Catalog API
+  description: >-
+    The USGS Earthquake Catalog API is an implementation of the FDSN Event
+    Web Service Specification, providing real-time and historical access to
+    earthquake catalog data from the USGS National Earthquake Information Center
+    (NEIC) and contributing networks. The API allows queries by location, time,
+    magnitude, depth, and other parameters with results in multiple formats.
+  version: '1.0'
+  contact:
+    email: eq_questions@usgs.gov
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+  license:
+    name: US Government Work
+    url: https://www.usa.gov/government-works
+servers:
+  - url: https://earthquake.usgs.gov/fdsnws/event/1
+    description: USGS Earthquake Catalog Production Server
+tags:
+  - name: Earthquakes
+    description: Earthquake catalog query and count operations
+  - name: Metadata
+    description: API metadata and discovery operations
+paths:
+  /query:
+    get:
+      operationId: queryEarthquakes
+      summary: Query Earthquake Catalog
+      description: >-
+        Submit a query to the USGS earthquake catalog using various filter
+        parameters. Returns earthquake events matching the specified criteria
+        in the requested format. Defaults to events from the past 30 days
+        if no time range is specified.
+      tags:
+        - Earthquakes
+      parameters:
+        - name: format
+          in: query
+          description: Output format for the response
+          required: false
+          schema:
+            type: string
+            enum:
+              - quakeml
+              - geojson
+              - kml
+              - csv
+              - text
+              - xml
+            default: geojson
+        - name: starttime
+          in: query
+          description: Limit results to events on or after this UTC date/time (ISO8601)
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: endtime
+          in: query
+          description: Limit results to events on or before this UTC date/time (ISO8601)
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: updatedafter
+          in: query
+          description: Limit results to events updated after this UTC date/time (ISO8601)
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: minlatitude
+          in: query
+          description: Limit to events south of this latitude (-90 to 90)
+          required: false
+          schema:
+            type: number
+            minimum: -90
+            maximum: 90
+        - name: maxlatitude
+          in: query
+          description: Limit to events north of this latitude (-90 to 90)
+          required: false
+          schema:
+            type: number
+            minimum: -90
+            maximum: 90
+        - name: minlongitude
+          in: query
+          description: Limit to events east of this longitude (-360 to 360)
+          required: false
+          schema:
+            type: number
+            minimum: -360
+            maximum: 360
+        - name: maxlongitude
+          in: query
+          description: Limit to events west of this longitude (-360 to 360)
+          required: false
+          schema:
+            type: number
+            minimum: -360
+            maximum: 360
+        - name: latitude
+          in: query
+          description: Latitude for circle search center (requires longitude and maxradius)
+          required: false
+          schema:
+            type: number
+            minimum: -90
+            maximum: 90
+        - name: longitude
+          in: query
+          description: Longitude for circle search center (requires latitude and maxradius)
+          required: false
+          schema:
+            type: number
+            minimum: -180
+            maximum: 180
+        - name: maxradius
+          in: query
+          description: Maximum radius in degrees for circle search
+          required: false
+          schema:
+            type: number
+            minimum: 0
+            maximum: 180
+        - name: maxradiuskm
+          in: query
+          description: Maximum radius in kilometers for circle search
+          required: false
+          schema:
+            type: number
+            minimum: 0
+            maximum: 20001.6
+        - name: minmagnitude
+          in: query
+          description: Limit to events with magnitude larger than this value
+          required: false
+          schema:
+            type: number
+        - name: maxmagnitude
+          in: query
+          description: Limit to events with magnitude smaller than this value
+          required: false
+          schema:
+            type: number
+        - name: mindepth
+          in: query
+          description: Limit to events with depth more than this value in km
+          required: false
+          schema:
+            type: number
+            minimum: -100
+            maximum: 1000
+        - name: maxdepth
+          in: query
+          description: Limit to events with depth less than this value in km
+          required: false
+          schema:
+            type: number
+            minimum: -100
+            maximum: 1000
+        - name: eventtype
+          in: query
+          description: Limit to events of a specific type (e.g., earthquake, explosion)
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of events to return (1-20000)
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 20000
+            default: 20000
+        - name: offset
+          in: query
+          description: Return results starting at this offset (for pagination)
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: orderby
+          in: query
+          description: Order results by field
+          required: false
+          schema:
+            type: string
+            enum:
+              - time
+              - time-asc
+              - magnitude
+              - magnitude-asc
+            default: time
+        - name: catalog
+          in: query
+          description: Specify a specific earthquake catalog to query
+          required: false
+          schema:
+            type: string
+        - name: contributor
+          in: query
+          description: Limit to events contributed by a specific contributor
+          required: false
+          schema:
+            type: string
+        - name: eventid
+          in: query
+          description: Select a specific event by event ID
+          required: false
+          schema:
+            type: string
+        - name: includeallmagnitudes
+          in: query
+          description: Include all available magnitudes for events
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: includeallorigins
+          in: query
+          description: Include all available origins for events
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: includedeleted
+          in: query
+          description: Include deleted events
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: includesuperseded
+          in: query
+          description: Include superseded events
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: reviewstatus
+          in: query
+          description: Limit to events with a specific review status
+          required: false
+          schema:
+            type: string
+            enum:
+              - all
+              - automatic
+              - reviewed
+            default: all
+      responses:
+        '200':
+          description: Earthquake events matching the query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarthquakeFeatureCollection'
+            application/xml:
+              schema:
+                type: string
+            text/csv:
+              schema:
+                type: string
+        '400':
+          description: Bad request - invalid parameters
+        '404':
+          description: No data found for request
+  /count:
+    get:
+      operationId: countEarthquakes
+      summary: Count Earthquake Events
+      description: >-
+        Returns the number of earthquakes matching the specified query
+        parameters without returning the full event data. Accepts the same
+        parameters as the query endpoint.
+      tags:
+        - Earthquakes
+      parameters:
+        - name: format
+          in: query
+          description: Output format
+          required: false
+          schema:
+            type: string
+            enum:
+              - quakeml
+              - geojson
+              - xml
+              - text
+            default: geojson
+        - name: starttime
+          in: query
+          description: Limit results to events on or after this date/time (ISO8601)
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: endtime
+          in: query
+          description: Limit results to events on or before this date/time (ISO8601)
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: minlatitude
+          in: query
+          description: Minimum latitude boundary
+          required: false
+          schema:
+            type: number
+        - name: maxlatitude
+          in: query
+          description: Maximum latitude boundary
+          required: false
+          schema:
+            type: number
+        - name: minlongitude
+          in: query
+          description: Minimum longitude boundary
+          required: false
+          schema:
+            type: number
+        - name: maxlongitude
+          in: query
+          description: Maximum longitude boundary
+          required: false
+          schema:
+            type: number
+        - name: minmagnitude
+          in: query
+          description: Minimum magnitude filter
+          required: false
+          schema:
+            type: number
+        - name: maxmagnitude
+          in: query
+          description: Maximum magnitude filter
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Count of earthquakes matching the query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EarthquakeCount'
+        '400':
+          description: Bad request
+  /catalogs:
+    get:
+      operationId: listCatalogs
+      summary: List Earthquake Catalogs
+      description: Returns a list of available earthquake catalogs that can be queried.
+      tags:
+        - Metadata
+      responses:
+        '200':
+          description: List of available catalogs
+          content:
+            application/xml:
+              schema:
+                type: string
+  /contributors:
+    get:
+      operationId: listContributors
+      summary: List Data Contributors
+      description: Returns a list of available data contributors to the earthquake catalog.
+      tags:
+        - Metadata
+      responses:
+        '200':
+          description: List of available contributors
+          content:
+            application/xml:
+              schema:
+                type: string
+  /version:
+    get:
+      operationId: getVersion
+      summary: Get API Version
+      description: Returns the full version number of the earthquake catalog web service.
+      tags:
+        - Metadata
+      responses:
+        '200':
+          description: Service version number
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    EarthquakeFeatureCollection:
+      type: object
+      description: GeoJSON FeatureCollection of earthquake events
+      properties:
+        type:
+          type: string
+          enum:
+            - FeatureCollection
+        metadata:
+          type: object
+          properties:
+            generated:
+              type: integer
+              description: Unix timestamp when the response was generated
+            url:
+              type: string
+              description: The URL used to generate this response
+            title:
+              type: string
+              description: Title describing the query
+            status:
+              type: integer
+              description: HTTP status code
+            api:
+              type: string
+              description: API version
+            count:
+              type: integer
+              description: Number of events in this response
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/EarthquakeFeature'
+        bbox:
+          type: array
+          items:
+            type: number
+          description: Bounding box of all events in the response
+    EarthquakeFeature:
+      type: object
+      description: GeoJSON Feature representing a single earthquake event
+      properties:
+        type:
+          type: string
+          enum:
+            - Feature
+        properties:
+          $ref: '#/components/schemas/EarthquakeProperties'
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+              description: '[longitude, latitude, depth_km]'
+        id:
+          type: string
+          description: Unique event ID
+    EarthquakeProperties:
+      type: object
+      properties:
+        mag:
+          type: number
+          nullable: true
+          description: Magnitude of the earthquake
+        place:
+          type: string
+          nullable: true
+          description: Textual description of named geographic region near the event
+        time:
+          type: integer
+          description: Time of the event in milliseconds since epoch
+        updated:
+          type: integer
+          description: Time the event was last updated (milliseconds since epoch)
+        tz:
+          type: integer
+          nullable: true
+          description: Timezone offset in minutes from UTC
+        url:
+          type: string
+          description: URL to the USGS event page
+        detail:
+          type: string
+          description: URL to detailed GeoJSON for this event
+        felt:
+          type: integer
+          nullable: true
+          description: Number of Did-You-Feel-It responses
+        cdi:
+          type: number
+          nullable: true
+          description: Maximum reported intensity from Did-You-Feel-It
+        mmi:
+          type: number
+          nullable: true
+          description: Maximum estimated instrumental intensity from ShakeMap
+        alert:
+          type: string
+          nullable: true
+          description: PAGER alert level (green, yellow, orange, red)
+        status:
+          type: string
+          description: Indicates whether the event has been reviewed by a human
+        tsunami:
+          type: integer
+          description: Flag indicating potential tsunamigenic event (1 = yes)
+        sig:
+          type: integer
+          description: Significance score (0-1000) indicating earthquake importance
+        net:
+          type: string
+          description: Network ID of the preferred origin for this event
+        code:
+          type: string
+          description: An identifying code assigned by the data source
+        ids:
+          type: string
+          description: Comma-separated list of event IDs from contributing networks
+        sources:
+          type: string
+          description: Comma-separated list of network codes that contribute data
+        types:
+          type: string
+          description: Comma-separated list of product types associated with this event
+        nst:
+          type: integer
+          nullable: true
+          description: Number of seismic stations used to determine earthquake location
+        dmin:
+          type: number
+          nullable: true
+          description: Horizontal distance in degrees to nearest station
+        rms:
+          type: number
+          nullable: true
+          description: Root-mean-square travel time residual in seconds
+        gap:
+          type: number
+          nullable: true
+          description: Largest azimuthal gap between stations in degrees
+        magType:
+          type: string
+          nullable: true
+          description: Method used to calculate preferred magnitude
+        type:
+          type: string
+          description: Type of seismic event
+        title:
+          type: string
+          description: Title formatted from place and magnitude
+    EarthquakeCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of events matching the query
+        maxAllowed:
+          type: integer
+          description: Maximum number of events allowed per request
