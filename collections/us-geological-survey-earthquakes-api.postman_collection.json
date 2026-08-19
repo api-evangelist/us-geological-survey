@@ -1,0 +1,896 @@
+{
+  "item": [
+    {
+      "id": "509aa047-8cbc-4835-afda-5798fa115dbd",
+      "name": "Earthquakes",
+      "description": {
+        "content": "Earthquake catalog query and count operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "507163d7-da48-4023-a1d3-99d82df3acdf",
+          "name": "Query Earthquake Catalog",
+          "request": {
+            "name": "Query Earthquake Catalog",
+            "description": {
+              "content": "Submit a query to the USGS earthquake catalog using various filter parameters. Returns earthquake events matching the specified criteria in the requested format. Defaults to events from the past 30 days if no time range is specified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "geojson",
+                  "description": "Output format for the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "starttime",
+                  "value": "<dateTime>",
+                  "description": "Limit results to events on or after this UTC date/time (ISO8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endtime",
+                  "value": "<dateTime>",
+                  "description": "Limit results to events on or before this UTC date/time (ISO8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "updatedafter",
+                  "value": "<dateTime>",
+                  "description": "Limit results to events updated after this UTC date/time (ISO8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "minlatitude",
+                  "value": "<number>",
+                  "description": "Limit to events south of this latitude (-90 to 90)"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxlatitude",
+                  "value": "<number>",
+                  "description": "Limit to events north of this latitude (-90 to 90)"
+                },
+                {
+                  "disabled": false,
+                  "key": "minlongitude",
+                  "value": "<number>",
+                  "description": "Limit to events east of this longitude (-360 to 360)"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxlongitude",
+                  "value": "<number>",
+                  "description": "Limit to events west of this longitude (-360 to 360)"
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<number>",
+                  "description": "Latitude for circle search center (requires longitude and maxradius)"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<number>",
+                  "description": "Longitude for circle search center (requires latitude and maxradius)"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxradius",
+                  "value": "<number>",
+                  "description": "Maximum radius in degrees for circle search"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxradiuskm",
+                  "value": "<number>",
+                  "description": "Maximum radius in kilometers for circle search"
+                },
+                {
+                  "disabled": false,
+                  "key": "minmagnitude",
+                  "value": "<number>",
+                  "description": "Limit to events with magnitude larger than this value"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxmagnitude",
+                  "value": "<number>",
+                  "description": "Limit to events with magnitude smaller than this value"
+                },
+                {
+                  "disabled": false,
+                  "key": "mindepth",
+                  "value": "<number>",
+                  "description": "Limit to events with depth more than this value in km"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxdepth",
+                  "value": "<number>",
+                  "description": "Limit to events with depth less than this value in km"
+                },
+                {
+                  "disabled": false,
+                  "key": "eventtype",
+                  "value": "<string>",
+                  "description": "Limit to events of a specific type (e.g., earthquake, explosion)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20000",
+                  "description": "Maximum number of events to return (1-20000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "1",
+                  "description": "Return results starting at this offset (for pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "time",
+                  "description": "Order results by field"
+                },
+                {
+                  "disabled": false,
+                  "key": "catalog",
+                  "value": "<string>",
+                  "description": "Specify a specific earthquake catalog to query"
+                },
+                {
+                  "disabled": false,
+                  "key": "contributor",
+                  "value": "<string>",
+                  "description": "Limit to events contributed by a specific contributor"
+                },
+                {
+                  "disabled": false,
+                  "key": "eventid",
+                  "value": "<string>",
+                  "description": "Select a specific event by event ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeallmagnitudes",
+                  "value": "false",
+                  "description": "Include all available magnitudes for events"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeallorigins",
+                  "value": "false",
+                  "description": "Include all available origins for events"
+                },
+                {
+                  "disabled": false,
+                  "key": "includedeleted",
+                  "value": "false",
+                  "description": "Include deleted events"
+                },
+                {
+                  "disabled": false,
+                  "key": "includesuperseded",
+                  "value": "false",
+                  "description": "Include superseded events"
+                },
+                {
+                  "disabled": false,
+                  "key": "reviewstatus",
+                  "value": "all",
+                  "description": "Limit to events with a specific review status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a16cebbd-7657-4378-891a-82d67a743bcf",
+              "name": "Earthquake events matching the query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "starttime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endtime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updatedafter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "minlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxradius",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxradiuskm",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minmagnitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxmagnitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "mindepth",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxdepth",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "eventtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20000"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "time"
+                    },
+                    {
+                      "key": "catalog",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contributor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeallmagnitudes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeallorigins",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includedeleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includesuperseded",
+                      "value": "false"
+                    },
+                    {
+                      "key": "reviewstatus",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"metadata\": {\n    \"generated\": 5469,\n    \"url\": \"string\",\n    \"title\": \"string\",\n    \"status\": 5799,\n    \"api\": \"string\",\n    \"count\": 5163\n  },\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"mag\": 8703.97815597911,\n        \"place\": \"string\",\n        \"time\": 2385,\n        \"updated\": 2898,\n        \"tz\": 1559,\n        \"url\": \"string\",\n        \"detail\": \"string\",\n        \"felt\": 2848,\n        \"cdi\": 6556.07769103687,\n        \"mmi\": 7064.038092600123,\n        \"alert\": \"string\",\n        \"status\": \"string\",\n        \"tsunami\": 4016,\n        \"sig\": 1222,\n        \"net\": \"string\",\n        \"code\": \"string\",\n        \"ids\": \"string\",\n        \"sources\": \"string\",\n        \"types\": \"string\",\n        \"nst\": 3991,\n        \"dmin\": 1584.888896776573,\n        \"rms\": 9595.034380284076,\n        \"gap\": 2914.998088955236,\n        \"magType\": \"string\",\n        \"type\": \"string\",\n        \"title\": \"string\"\n      },\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          8134.03823829845,\n          9389.637226305133\n        ]\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"mag\": 3020.9450806861946,\n        \"place\": \"string\",\n        \"time\": 6453,\n        \"updated\": 167,\n        \"tz\": 7910,\n        \"url\": \"string\",\n        \"detail\": \"string\",\n        \"felt\": 3860,\n        \"cdi\": 3587.624372269583,\n        \"mmi\": 8718.559696097722,\n        \"alert\": \"string\",\n        \"status\": \"string\",\n        \"tsunami\": 97,\n        \"sig\": 1999,\n        \"net\": \"string\",\n        \"code\": \"string\",\n        \"ids\": \"string\",\n        \"sources\": \"string\",\n        \"types\": \"string\",\n        \"nst\": 2159,\n        \"dmin\": 8629.916082392881,\n        \"rms\": 1417.1600023785768,\n        \"gap\": 4704.723457333241,\n        \"magType\": \"string\",\n        \"type\": \"string\",\n        \"title\": \"string\"\n      },\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          7523.237864786078,\n          209.02685308204715\n        ]\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"bbox\": [\n    1707.0117612751978,\n    4403.641382781949\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be84060d-a6f4-4b84-86dc-29fa287dfd8b",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "starttime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endtime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updatedafter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "minlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxradius",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxradiuskm",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minmagnitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxmagnitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "mindepth",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxdepth",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "eventtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20000"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "time"
+                    },
+                    {
+                      "key": "catalog",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contributor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeallmagnitudes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeallorigins",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includedeleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includesuperseded",
+                      "value": "false"
+                    },
+                    {
+                      "key": "reviewstatus",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ccd6c96f-9f34-498a-9e61-e1df1d19ee5e",
+              "name": "No data found for request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "starttime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endtime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updatedafter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "minlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxradius",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxradiuskm",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minmagnitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxmagnitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "mindepth",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxdepth",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "eventtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20000"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "time"
+                    },
+                    {
+                      "key": "catalog",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contributor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeallmagnitudes",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeallorigins",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includedeleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includesuperseded",
+                      "value": "false"
+                    },
+                    {
+                      "key": "reviewstatus",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94aa1af1-3692-4e9d-a161-0c4a9be20bbb",
+          "name": "Count Earthquake Events",
+          "request": {
+            "name": "Count Earthquake Events",
+            "description": {
+              "content": "Returns the number of earthquakes matching the specified query parameters without returning the full event data. Accepts the same parameters as the query endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "geojson",
+                  "description": "Output format"
+                },
+                {
+                  "disabled": false,
+                  "key": "starttime",
+                  "value": "<dateTime>",
+                  "description": "Limit results to events on or after this date/time (ISO8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endtime",
+                  "value": "<dateTime>",
+                  "description": "Limit results to events on or before this date/time (ISO8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "minlatitude",
+                  "value": "<number>",
+                  "description": "Minimum latitude boundary"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxlatitude",
+                  "value": "<number>",
+                  "description": "Maximum latitude boundary"
+                },
+                {
+                  "disabled": false,
+                  "key": "minlongitude",
+                  "value": "<number>",
+                  "description": "Minimum longitude boundary"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxlongitude",
+                  "value": "<number>",
+                  "description": "Maximum longitude boundary"
+                },
+                {
+                  "disabled": false,
+                  "key": "minmagnitude",
+                  "value": "<number>",
+                  "description": "Minimum magnitude filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxmagnitude",
+                  "value": "<number>",
+                  "description": "Maximum magnitude filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "474e684a-06c8-4b50-ab57-b30e787bed05",
+              "name": "Count of earthquakes matching the query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "starttime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endtime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "minlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minmagnitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxmagnitude",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2592,\n  \"maxAllowed\": 1318\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a797e0a0-b08c-4535-9959-3e9175d744e5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "starttime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endtime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "minlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlatitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxlongitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "minmagnitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "maxmagnitude",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://earthquake.usgs.gov/fdsnws/event/1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4ee7c32e-2ed1-4f01-9473-ccc1ca67bd29",
+    "name": "USGS Earthquake Catalog Collections Earthquakes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The USGS Earthquake Catalog API is an implementation of the FDSN Event Web Service Specification, providing real-time and historical access to earthquake catalog data from the USGS National Earthquake Information Center (NEIC) and contributing networks. The API allows queries by location, time, magnitude, depth, and other parameters with results in multiple formats.\n\nContact Support:\n Email: eq_questions@usgs.gov",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USGS Earthquake Catalog Collections Time Series Metadata API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Time Series Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Time Series Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/collections/time-series-metadata/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier"
+              }
+            ]
+          },
+          "docs": "Returns metadata about grouped observations including operational thresholds, units of measurement, and time series characteristics for USGS monitoring locations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

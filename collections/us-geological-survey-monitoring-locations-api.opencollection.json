@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USGS Earthquake Catalog Collections Monitoring Locations API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Monitoring Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/collections/monitoring-locations/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier"
+              },
+              {
+                "name": "monitoringLocationType",
+                "value": "",
+                "type": "query",
+                "description": "Type of monitoring location (e.g., Stream, Lake, Well)"
+              },
+              {
+                "name": "stateCd",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter state abbreviation"
+              },
+              {
+                "name": "countyCd",
+                "value": "",
+                "type": "query",
+                "description": "County FIPS code"
+              },
+              {
+                "name": "hucCd",
+                "value": "",
+                "type": "query",
+                "description": "Hydrologic Unit Code (HUC)"
+              }
+            ]
+          },
+          "docs": "Returns geographic and identification information for USGS water monitoring stations including names, identifiers, coordinates, and hydrologic unit codes."
+        },
+        {
+          "info": {
+            "name": "Get Monitoring Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/collections/monitoring-locations/items/:featureId",
+            "params": [
+              {
+                "name": "featureId",
+                "value": "",
+                "type": "path",
+                "description": "Unique feature identifier for the monitoring location"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns details for a single USGS water monitoring location by feature ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

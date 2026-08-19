@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USGS Earthquake Catalog Collections Continuous Values API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Continuous Values",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Continuous Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/collections/continuous-values/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "datetime",
+                "value": "",
+                "type": "query",
+                "description": "Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "properties",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in response"
+              },
+              {
+                "name": "sortby",
+                "value": "",
+                "type": "query",
+                "description": "Property name to sort results by (prefix with - for descending)"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier (e.g., USGS-01646500)"
+              },
+              {
+                "name": "parameterCode",
+                "value": "",
+                "type": "query",
+                "description": "USGS parameter code for the measurement type (e.g., 00060 for discharge)"
+              }
+            ]
+          },
+          "docs": "Returns high-frequency continuous measurement data from USGS automated sensor networks. Includes streamflow, gage height, temperature, and hundreds of other parameters measured at monitoring locations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

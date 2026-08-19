@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USGS Earthquake Catalog Collections Metadata API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Earthquake Catalogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/catalogs"
+          },
+          "docs": "Returns a list of available earthquake catalogs that can be queried."
+        },
+        {
+          "info": {
+            "name": "List Data Contributors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/contributors"
+          },
+          "docs": "Returns a list of available data contributors to the earthquake catalog."
+        },
+        {
+          "info": {
+            "name": "Get API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/version"
+          },
+          "docs": "Returns the full version number of the earthquake catalog web service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

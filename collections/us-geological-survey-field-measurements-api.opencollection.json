@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USGS Earthquake Catalog Collections Field Measurements API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Field Measurements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Field Measurements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/collections/field-measurements/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "datetime",
+                "value": "",
+                "type": "query",
+                "description": "Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier"
+              }
+            ]
+          },
+          "docs": "Returns physically measured values collected during site visits by USGS hydrographers, including streamflow measurements used to define rating curves for continuous data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

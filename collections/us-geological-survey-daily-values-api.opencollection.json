@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "USGS Earthquake Catalog Collections Daily Values API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Daily Values",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Daily Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://earthquake.usgs.gov/fdsnws/event/1/collections/daily-values/items",
+            "params": [
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "Bounding box for spatial filtering (minLon,minLat,maxLon,maxLat)"
+              },
+              {
+                "name": "datetime",
+                "value": "",
+                "type": "query",
+                "description": "Date/time filter (RFC 3339 or ISO 8601, supports intervals with /)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of features to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting offset for pagination"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "CQL2 text filter expression for advanced querying"
+              },
+              {
+                "name": "f",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "monitoringLocationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "USGS monitoring location identifier"
+              },
+              {
+                "name": "parameterCode",
+                "value": "",
+                "type": "query",
+                "description": "USGS parameter code"
+              },
+              {
+                "name": "statCode",
+                "value": "",
+                "type": "query",
+                "description": "Statistical code (e.g., 00003 for mean, 00001 for max)"
+              }
+            ]
+          },
+          "docs": "Returns daily summary water data including mean, median, maximum, and minimum values for streams, lakes, and wells. Aggregates continuous sensor data into daily statistics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
