@@ -18,6 +18,11 @@ apis:
   - Scientific Data
   - Research
   - Catalog
+  - Federal-Government
+  tags_raw:
+  - Scientific Data
+  - Research
+  - Catalog
   - Federal Government
   humanURL: https://www.sciencebase.gov/catalog/
   properties:
@@ -32,6 +37,10 @@ apis:
 - aid: us-geological-survey:geomagnetism-api
   name: USGS Geomagnetism Web Service
   tags:
+  - Geomagnetism
+  - Magnetic Data
+  - Federal-Government
+  tags_raw:
   - Geomagnetism
   - Magnetic Data
   - Federal Government
@@ -51,6 +60,11 @@ apis:
   - Seismic Design
   - Engineering
   - Hazards
+  - Federal-Government
+  tags_raw:
+  - Seismic Design
+  - Engineering
+  - Hazards
   - Federal Government
   humanURL: https://earthquake.usgs.gov/ws/designmaps/
   properties:
@@ -62,6 +76,11 @@ apis:
 - aid: us-geological-survey:national-map-api
   name: USGS National Map Services
   tags:
+  - Mapping
+  - Geospatial
+  - Topography
+  - Federal-Government
+  tags_raw:
   - Mapping
   - Geospatial
   - Topography
@@ -79,6 +98,8 @@ apis:
   description: OGC API collection discovery
   humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -131,6 +152,8 @@ apis:
   description: Physically measured values from site visits
   humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
   tags:
+  - field-measurements
+  tags_raw:
   - Field Measurements
   properties:
   - type: OpenAPI
@@ -170,6 +193,8 @@ apis:
   description: Metadata about time series observations
   humanURL: https://earthquake.usgs.gov/fdsnws/event/1/
   tags:
+  - time-series-metadata
+  tags_raw:
   - Time Series Metadata
   properties:
   - type: OpenAPI
@@ -180,6 +205,14 @@ apis:
     url: https://api.waterdata.usgs.gov
 name: US Geological Survey
 tags:
+  - Federal-Government
+  - Earth Science
+  - Earthquakes
+  - Water Data
+  - Geospatial
+  - Hazards
+  - Environment
+tags_raw:
   - Federal Government
   - Earth Science
   - Earthquakes
